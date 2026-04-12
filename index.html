@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>noon Partners – Campaigns Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sidebar-bg: #ffffff;
+  --sidebar-border: #EBEBEB;
+  --sidebar-active-bg: #F4F4F4;
+  --topnav-bg: #ffffff;
+  --topnav-border: #EBEBEB;
+  --page-bg: #F5F6FA;
+  --card-bg: #ffffff;
+  --card-border: #E8EBF0;
+  --text-1: #1A1A1A;
+  --text-2: #6B6B6B;
+  --text-3: #9A9A9A;
+  --text-4: #BBBBBB;
+  --blue: #1A6FE8;
+  --blue-bg: #EEF4FD;
+  --blue-dk: #1459C0;
+  --green: #1A7F4B;
+  --green-bg: #E8F7EE;
+  --red: #C0392B;
+  --red-bg: #FDECEB;
+  --amber: #B07700;
+  --amber-bg: #FFF8E6;
+  --noon-orange: #F5A623;
+  --r: 8px;
+  --r-sm: 6px;
+  --r-lg: 12px;
+}
+body { font-family:'DM Sans',sans-serif; background:var(--page-bg); color:var(--text-1); display:flex; height:100vh; overflow:hidden; font-size:14px; line-height:1.5; }
+
+/* SIDEBAR */
+.sidebar { width:72px; background:var(--sidebar-bg); border-right:1px solid var(--sidebar-border); display:flex; flex-direction:column; align-items:center; padding-bottom:16px; flex-shrink:0; }
+.sb-logo { width:72px; height:52px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--sidebar-border); margin-bottom:8px; }
+.sb-nav { display:flex; flex-direction:column; align-items:center; gap:2px; width:100%; padding:0 8px; flex:1; }
+.nav-item { width:56px; height:52px; border-radius:var(--r); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; cursor:pointer; transition:background .15s; }
+.nav-item:hover,.nav-item.active { background:var(--sidebar-active-bg); }
+.nav-item svg { width:20px; height:20px; stroke:#9A9A9A; fill:none; stroke-width:1.6; flex-shrink:0; }
+.nav-item.active svg,.nav-item:hover svg { stroke:var(--text-1); }
+.nav-label { font-size:9.5px; font-weight:500; color:var(--text-3); text-align:center; line-height:1.1; }
+.nav-item.active .nav-label,.nav-item:hover .nav-label { color:var(--text-1); }
+.sb-bottom { display:flex; flex-direction:column; align-items:center; gap:6px; width:100%; padding:10px 8px 0; border-top:1px solid var(--sidebar-border); }
+.sb-smiley { width:36px; height:36px; border-radius:50%; background:var(--noon-orange); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.sb-flag { width:32px; height:32px; border-radius:50%; border:1px solid var(--card-border); display:flex; align-items:center; justify-content:center; font-size:19px; cursor:pointer; }
+
+/* MAIN */
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+
+/* TOPNAV */
+.topnav { background:var(--topnav-bg); border-bottom:1px solid var(--topnav-border); height:52px; display:flex; align-items:center; padding:0 18px; gap:10px; flex-shrink:0; }
+.tn-hamburger { width:32px; height:32px; border:none; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; border-radius:var(--r-sm); color:var(--text-2); transition:background .15s; }
+.tn-hamburger:hover { background:var(--page-bg); }
+.tn-hamburger svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; }
+.tn-divider { width:1px; height:18px; background:var(--card-border); flex-shrink:0; }
+.tn-workspace { display:flex; align-items:center; gap:5px; font-size:13px; color:var(--text-2); padding:4px 8px; border-radius:var(--r-sm); cursor:pointer; border:1px solid transparent; transition:background .15s; white-space:nowrap; font-weight:500; }
+.tn-workspace:hover { background:var(--page-bg); border-color:var(--card-border); }
+.tn-workspace svg { width:11px; height:11px; stroke:var(--text-4); fill:none; stroke-width:2; }
+.tn-search { flex:1; max-width:340px; position:relative; }
+.tn-search input { width:100%; height:34px; border:1px solid var(--card-border); border-radius:var(--r-sm); padding:0 48px 0 32px; font-size:13px; font-family:'DM Sans',sans-serif; color:var(--text-1); background:var(--page-bg); outline:none; transition:border-color .15s,background .15s; }
+.tn-search input:focus { border-color:var(--blue); background:#fff; }
+.tn-search input::placeholder { color:var(--text-4); }
+.tn-search .si { position:absolute; left:9px; top:50%; transform:translateY(-50%); width:15px; height:15px; stroke:var(--text-4); fill:none; stroke-width:1.8; pointer-events:none; }
+.tn-search .sk { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:10px; color:var(--text-4); background:var(--card-bg); border:1px solid var(--card-border); border-radius:4px; padding:1px 5px; pointer-events:none; }
+.tn-right { display:flex; align-items:center; gap:2px; margin-left:auto; }
+.tn-icon { width:34px; height:34px; border-radius:var(--r-sm); border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-2); transition:background .15s; position:relative; }
+.tn-icon:hover { background:var(--page-bg); }
+.tn-icon svg { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.6; }
+.notif-dot { position:absolute; top:7px; right:7px; width:7px; height:7px; border-radius:50%; background:#E74C3C; border:2px solid var(--topnav-bg); }
+.tn-avatar { width:30px; height:30px; border-radius:50%; background:var(--blue-bg); border:1.5px solid var(--card-border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--blue); cursor:pointer; margin-left:4px; }
+
+/* PAGE */
+.page { flex:1; overflow-y:auto; padding:24px 28px 40px; }
+
+/* HEADER */
+.ph { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; gap:12px; flex-wrap:wrap; }
+.ph-left { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.ph-left h1 { font-size:20px; font-weight:600; color:var(--text-1); letter-spacing:-.3px; }
+.ph-meta { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--text-3); }
+.ph-right { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.live-dot { width:6px; height:6px; border-radius:50%; background:var(--green); flex-shrink:0; }
+
+/* FILTERS */
+.fbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; justify-content:space-between; }
+.fbar-left { display:flex; align-items:center; gap:8px; }
+.fbar-right { display:flex; align-items:center; gap:8px; }
+.fbtn { height:32px; padding:0 11px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-1); font-size:13px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:5px; transition:all .12s; white-space:nowrap; outline:none; }
+.fbtn:hover { border-color:#C8C8C8; background:#FAFAFA; }
+.fbtn.active { border-color:#A0BFEF; background:var(--blue-bg); color:var(--blue-dk); }
+.fbtn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:1.7; flex-shrink:0; }
+.fchev { width:9px; height:9px; stroke:var(--text-4); fill:none; stroke-width:2; transition:transform .15s; flex-shrink:0; }
+.fbtn.open .fchev { transform:rotate(180deg); }
+.btn-create { height:32px; padding:0 14px; border-radius:var(--r-sm); border:none; background:var(--blue); color:#fff; font-size:13px; font-family:'DM Sans',sans-serif; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:5px; transition:background .15s; outline:none; }
+.btn-create:hover { background:var(--blue-dk); }
+.btn-create svg { width:12px; height:12px; stroke:#fff; fill:none; stroke-width:2.2; stroke-linecap:round; }
+
+/* DROPDOWNS */
+.ddw { position:relative; }
+.dd { position:absolute; top:calc(100% + 5px); left:0; z-index:300; background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r); min-width:210px; padding:6px; box-shadow:0 4px 20px rgba(0,0,0,.10); display:none; }
+.dd.open { display:block; }
+.dd-lbl { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--text-4); padding:5px 10px 3px; }
+.dd-row { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:var(--r-sm); cursor:pointer; font-size:13px; color:var(--text-1); transition:background .1s; user-select:none; }
+.dd-row:hover { background:var(--page-bg); }
+.dd-row input[type=checkbox] { width:14px; height:14px; accent-color:var(--blue); cursor:pointer; flex-shrink:0; }
+.sdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.sdot.active  { background:#1A7F4B; }
+.sdot.paused  { background:#C07B00; }
+.sdot.draft   { background:#BBBBBB; }
+.sdot.archived{ background:#BBBBBB; outline:1px solid #999; }
+.sdot.exh     { background:#C0392B; }
+.dd-sep { height:1px; background:var(--card-border); margin:5px 0; }
+.dd-foot { display:flex; gap:6px; padding:5px 4px 2px; }
+.dd-apply { flex:1; height:30px; border-radius:var(--r-sm); border:none; background:var(--blue); color:#fff; font-size:12px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; transition:background .15s; }
+.dd-apply:hover { background:var(--blue-dk); }
+.dd-clear { flex:1; height:30px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--page-bg); color:var(--text-2); font-size:12px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; }
+.dd-clear:hover { background:var(--card-border); }
+.date-dd { position:absolute; top:calc(100% + 5px); right:0; z-index:300; background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r); min-width:178px; padding:6px; box-shadow:0 4px 20px rgba(0,0,0,.10); display:none; }
+.date-dd.open { display:block; }
+.dp { padding:7px 12px; border-radius:var(--r-sm); font-size:13px; cursor:pointer; color:var(--text-1); transition:background .1s; }
+.dp:hover { background:var(--page-bg); }
+.dp.sel { background:var(--blue-bg); color:var(--blue-dk); font-weight:600; }
+
+/* CHIPS */
+.chips { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:18px; min-height:22px; }
+.chip-lbl { font-size:12px; color:var(--text-3); }
+.chip { display:inline-flex; align-items:center; gap:4px; height:22px; padding:0 7px 0 9px; border-radius:20px; background:var(--card-bg); border:1px solid var(--card-border); font-size:12px; font-weight:500; color:var(--text-2); }
+.chip button { background:none; border:none; cursor:pointer; color:var(--text-4); font-size:14px; line-height:1; padding:0; display:flex; align-items:center; transition:color .1s; }
+.chip button:hover { color:var(--text-1); }
+.chip-clear { font-size:12px; color:var(--blue); background:none; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; padding:0; }
+.chip-clear:hover { text-decoration:underline; }
+
+/* ALERT */
+.alert { display:flex; align-items:center; gap:10px; background:#FFFBF0; border:1px solid #F5D88B; border-radius:var(--r-sm); padding:9px 14px; margin-bottom:18px; font-size:13px; color:#7A5A00; animation:fadeDown .25s ease both; }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+.alert svg { width:15px; height:15px; stroke:var(--amber); fill:none; stroke-width:1.7; flex-shrink:0; }
+.alert a { color:var(--amber); font-weight:600; text-decoration:none; }
+.alert a:hover { text-decoration:underline; }
+.alert-x { margin-left:auto; background:none; border:none; cursor:pointer; color:#C0A060; font-size:18px; line-height:1; padding:0; }
+
+/* METRICS CARD */
+.mcard { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r-lg); overflow:hidden; margin-bottom:20px; animation:fadeUp .3s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+.pm-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.pm-cell { padding:20px 22px 18px; border-right:1px solid var(--card-border); position:relative; transition:background .15s; }
+.pm-cell:last-child { border-right:none; }
+.pm-cell:hover { background:#FAFAFA; }
+.pm-accent { position:absolute; top:0; left:0; right:0; height:3px; }
+.a-roas    { background:var(--noon-orange); }
+.a-rev     { background:#2D8653; }
+.a-spends  { background:var(--blue); }
+.pm-lrow { display:flex; align-items:center; gap:5px; margin-bottom:10px; }
+.pm-lbl { font-size:11px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em; }
+.ibt { width:14px; height:14px; border-radius:50%; border:1px solid var(--card-border); background:none; cursor:default; display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--text-4); font-family:Georgia,serif; font-style:italic; flex-shrink:0; position:relative; }
+.ibt:hover::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 5px); left:50%; transform:translateX(-50%); background:#1A1A1A; color:#fff; font-size:11px; font-family:'DM Sans',sans-serif; font-style:normal; padding:4px 8px; border-radius:5px; white-space:nowrap; z-index:400; pointer-events:none; }
+.pm-val { font-size:28px; font-weight:600; color:var(--text-1); letter-spacing:-.5px; line-height:1; margin-bottom:7px; }
+.pm-delta { display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:500; padding:2px 7px; border-radius:20px; }
+.pm-delta.up   { background:var(--green-bg); color:var(--green); }
+.pm-delta.dn   { background:var(--red-bg);   color:var(--red); }
+.pm-delta svg  { width:10px; height:10px; flex-shrink:0; fill:currentColor; }
+.pm-sub { font-size:11px; color:var(--text-4); margin-top:4px; }
+
+.sec-tier { border-top:1px solid var(--card-border); }
+.sec-tier-lbl { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--text-4); padding:10px 22px 0; }
+.sec-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--card-border); margin-top:8px; }
+.sm-cell { padding:13px 22px 14px; border-right:1px solid var(--card-border); transition:background .15s; }
+.sm-cell:last-child { border-right:none; }
+.sm-cell:hover { background:#FAFAFA; }
+.sm-lbl { display:flex; align-items:center; gap:4px; font-size:11px; color:var(--text-3); margin-bottom:5px; }
+.sm-val { font-size:18px; font-weight:600; color:var(--text-1); letter-spacing:-.3px; }
+.sm-sub { font-size:11px; color:var(--text-4); margin-top:2px; }
+
+.tert { overflow:hidden; max-height:0; transition:max-height .3s ease; }
+.tert.open { max-height:80px; }
+.tert-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--card-border); }
+.tm-cell { padding:12px 22px; border-right:1px solid var(--card-border); }
+.tm-cell:last-child { border-right:none; }
+.tm-lbl { font-size:11px; color:var(--text-4); margin-bottom:3px; }
+.tm-val { font-size:15px; font-weight:600; color:var(--text-2); }
+
+.sm-row { border-top:1px solid var(--card-border); padding:0; }
+.sm-link { display:flex; align-items:center; gap:8px; width:100%; padding:10px 20px; background:none; border:none; cursor:pointer; font-size:12px; font-weight:600; color:var(--text-2); font-family:'DM Sans',sans-serif; transition:all .12s; text-align:left; }
+.sm-link:hover { background:#F5F7FF; color:var(--blue); }
+.sm-link:hover .sm-icon { stroke:var(--blue); }
+.sm-link:hover .sm-chev { stroke:var(--blue); }
+.sm-icon { width:13px; height:13px; stroke:var(--text-3); fill:none; stroke-width:1.8; flex-shrink:0; transition:stroke .12s; }
+.sm-chev { width:9px; height:9px; stroke:var(--text-4); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-left:auto; transition:transform .2s, stroke .12s; flex-shrink:0; }
+.sm-link.open .sm-chev { transform:rotate(180deg); }
+
+/* PLACEHOLDER */
+.placeholder { background:var(--card-bg); border:1.5px dashed var(--card-border); border-radius:var(--r-lg); padding:32px; display:flex; align-items:center; justify-content:center; color:var(--text-4); font-size:13px; font-weight:500; gap:8px; }
+.placeholder svg { width:16px; height:16px; stroke:var(--text-4); fill:none; stroke-width:1.6; }
+
+/* ── DETAIL VIEW ── */
+.detail-view { display:none; }
+.detail-view.active { display:block; }
+.overview-view.hidden { display:none; }
+
+/* breadcrumb */
+.bc { display:flex; align-items:center; gap:6px; margin-bottom:16px; }
+.bc-back { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:500; color:var(--text-3); cursor:pointer; border:none; background:none; font-family:'DM Sans',sans-serif; padding:0; transition:color .12s; }
+.bc-back:hover { color:var(--blue); }
+.bc-back svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+.bc-sep { color:var(--text-4); font-size:13px; }
+.bc-crumb { font-size:13px; color:var(--text-2); font-weight:500; max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* section 1 — header card */
+.dh-card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r-lg); padding:20px 22px 0; margin-bottom:20px; animation:fadeUp .25s ease both; }
+.dh-top { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding-bottom:16px; }
+.dh-left { min-width:0; flex:1; }
+.dh-name-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+.dh-name-display { font-size:19px; font-weight:600; color:var(--text-1); letter-spacing:-.3px; cursor:pointer; border-radius:4px; padding:1px 4px; margin:-1px -4px; transition:background .12s; display:inline-flex; align-items:center; gap:6px; max-width:480px; }
+.dh-name-display:hover { background:#F0F2F7; }
+.dh-name-display:hover .dh-edit-hint { opacity:1; }
+.dh-edit-hint { opacity:0; transition:opacity .12s; flex-shrink:0; }
+.dh-edit-hint svg { width:12px; height:12px; stroke:var(--text-3); fill:none; stroke-width:1.6; display:block; }
+.dh-name-text { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dh-name-input { font-size:19px; font-weight:600; color:var(--text-1); letter-spacing:-.3px; border:1.5px solid var(--blue); border-radius:6px; padding:2px 8px; outline:none; font-family:'DM Sans',sans-serif; background:#fff; display:none; width:380px; }
+.dh-meta { display:flex; align-items:center; gap:0; flex-wrap:wrap; row-gap:4px; }
+.dh-meta-item { display:flex; align-items:center; gap:4px; font-size:12px; color:var(--text-2); }
+.dh-meta-sep { width:1px; height:12px; background:var(--card-border); margin:0 10px; }
+.dh-meta-icon { width:12px; height:12px; stroke:var(--text-4); fill:none; stroke-width:1.7; flex-shrink:0; }
+.dh-meta-val { font-weight:500; color:var(--text-1); }
+
+/* header actions */
+.dh-actions { display:flex; align-items:center; gap:8px; flex-shrink:0; padding-top:2px; }
+.dh-toggle-btn { height:32px; padding:0 14px; border-radius:var(--r-sm); border:none; background:var(--blue); color:#fff; font-size:13px; font-family:'DM Sans',sans-serif; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; transition:background .15s; white-space:nowrap; }
+.dh-toggle-btn:hover { background:var(--blue-dk); }
+.dh-toggle-btn svg { width:11px; height:11px; stroke:#fff; fill:none; stroke-width:2; flex-shrink:0; }
+.dh-more-wrap { position:relative; }
+.dh-more-btn { height:32px; padding:0 12px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-2); font-size:13px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:5px; transition:all .12s; white-space:nowrap; }
+.dh-more-btn:hover { border-color:#C8C8C8; background:#FAFAFA; color:var(--text-1); }
+.dh-more-btn svg { width:12px; height:12px; stroke:currentColor; fill:none; stroke-width:1.8; }
+.dh-more-dd { position:absolute; top:calc(100% + 5px); right:0; z-index:300; background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r); min-width:170px; padding:5px; box-shadow:0 4px 20px rgba(0,0,0,.10); display:none; }
+.dh-more-dd.open { display:block; }
+.dh-dd-item { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:var(--r-sm); cursor:pointer; font-size:13px; color:var(--text-1); transition:background .1s; }
+.dh-dd-item:hover { background:var(--page-bg); }
+.dh-dd-item svg { width:12px; height:12px; stroke:var(--text-3); fill:none; stroke-width:1.7; flex-shrink:0; }
+.dh-dd-item.red { color:var(--red); }
+.dh-dd-item.red svg { stroke:var(--red); }
+.dh-dd-item.red:hover { background:var(--red-bg); }
+.dh-dd-sep { height:1px; background:var(--card-border); margin:4px 0; }
+
+/* stats strip at bottom of header card */
+.dh-stats { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--card-border); }
+.dh-stat { padding:14px 20px 16px; border-right:1px solid var(--card-border); }
+.dh-stat:last-child { border-right:none; }
+.dh-stat-lbl { font-size:11px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+.dh-stat-val { font-size:18px; font-weight:600; color:var(--text-1); letter-spacing:-.3px; margin-bottom:3px; }
+.dh-stat-sub { font-size:11px; color:var(--text-4); }
+.dh-prog-wrap { height:3px; background:var(--page-bg); border-radius:20px; overflow:hidden; margin:6px 0 4px; }
+.dh-prog-bar { height:100%; border-radius:20px; }
+
+/* campaign settings grid */
+.dh-settings { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--card-border); }
+.dh-sg { padding:14px 18px 16px; border-right:1px solid var(--card-border); }
+.dh-sg:last-child { border-right:none; }
+.dh-sg-lbl { font-size:10px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:7px; display:flex; align-items:center; gap:4px; }
+.dh-sg-val { font-size:13px; font-weight:500; color:var(--text-1); display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.dh-sg-sub { font-size:11px; color:var(--text-3); margin-top:2px; }
+.dh-sg-edit { width:18px; height:18px; border-radius:4px; border:1px solid transparent; background:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; color:var(--text-4); transition:all .12s; flex-shrink:0; padding:0; }
+.dh-sg-edit:hover { background:var(--page-bg); border-color:var(--card-border); color:var(--blue); }
+.dh-sg-edit svg { width:10px; height:10px; stroke:currentColor; fill:none; stroke-width:1.7; }
+.dh-date-no-end { font-size:11px; color:var(--text-3); font-style:italic; }
+
+/* detail section 3 — products table */
+.d-s3-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; gap:10px; margin-top:20px; }
+.d-s3-left { display:flex; align-items:center; gap:10px; }
+.d-s3-title { font-size:15px; font-weight:600; color:var(--text-1); }
+.d-s3-count { font-size:12px; color:var(--text-3); }
+.prod-img { width:32px; height:32px; border-radius:var(--r-sm); background:var(--page-bg); border:1px solid var(--card-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+.prod-name { font-size:12px; font-weight:500; color:var(--text-1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.prod-sku  { font-size:10px; color:var(--text-4); font-family:monospace; margin-top:1px; }
+
+/* section 2 — metrics card (reuses .mcard, .mc, .mc-lbl, .mc-val, .tert etc from overview) */
+.d-date-strip { display:flex; align-items:center; gap:6px; padding:12px 20px; border-bottom:1px solid var(--card-border); flex-wrap:wrap; }
+.d-date-strip-lbl { font-size:12px; font-weight:600; color:var(--text-2); margin-right:4px; }
+.d-dchip { height:26px; padding:0 10px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-2); font-size:12px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:all .12s; white-space:nowrap; }
+.d-dchip:hover { border-color:#C8C8C8; background:#FAFAFA; }
+.d-dchip.sel { border-color:#A0BFEF; background:var(--blue-bg); color:var(--blue-dk); font-weight:600; }
+.d-dchip svg { width:11px; height:11px; stroke:currentColor; fill:none; stroke-width:1.8; }
+.metrics-row { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); }
+.mc { padding:14px 16px; border-right:1px solid var(--card-border); border-top:3px solid transparent; transition:background .15s; }
+.mc:hover { background:#FAFAFA; }
+.mc-lbl { display:flex; align-items:center; gap:4px; font-size:11px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; }
+.mc-val { font-size:20px; font-weight:600; color:var(--text-1); letter-spacing:-.4px; }
+.tert { overflow:hidden; max-height:0; transition:max-height .3s ease; }
+.tert.open { max-height:80px; }
+.tert-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--card-border); }
+.tm-cell { padding:12px 22px; border-right:1px solid var(--card-border); }
+.tm-lbl { display:flex; align-items:center; gap:4px; font-size:11px; color:var(--text-4); margin-bottom:3px; }
+.tm-val { font-size:15px; font-weight:600; color:var(--text-2); }
+/* TRENDS TOGGLE */
+.trends-toggle-row { display:flex; align-items:center; gap:8px; width:100%; padding:10px 20px; background:none; border:none; border-top:1px solid var(--card-border); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .12s; text-align:left; }
+.trends-toggle-row:hover { background:#F5F7FF; }
+.trends-toggle-row:hover .trends-icon { stroke:var(--blue); }
+.trends-toggle-row:hover .trends-lbl { color:var(--blue); }
+.trends-toggle-row:hover .trends-chev { stroke:var(--blue); }
+.trends-icon { width:15px; height:12px; stroke:var(--text-3); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; transition:stroke .12s; }
+.trends-lbl { font-size:12px; font-weight:600; color:var(--text-2); transition:color .12s; }
+.trends-chev { width:9px; height:9px; stroke:var(--text-4); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; margin-left:auto; transition:transform .2s, stroke .12s; flex-shrink:0; }
+.trends-toggle-row.open .trends-chev { transform:rotate(180deg); }
+.trends-collapse { overflow:hidden; max-height:0; transition:max-height .35s ease; }
+.trends-collapse.open { max-height:360px; }
+.chart-header { display:flex; align-items:center; justify-content:space-between; padding:14px 20px 10px; border-bottom:1px solid var(--card-border); gap:12px; flex-wrap:wrap; }
+.chart-title { font-size:14px; font-weight:600; color:var(--text-1); }
+.metric-toggles { display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.mtoggle { display:inline-flex; align-items:center; gap:4px; height:24px; padding:0 8px; border-radius:20px; border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-3); font-size:11px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; transition:all .15s; white-space:nowrap; }
+.mtoggle:hover { border-color:#C8C8C8; color:var(--text-2); }
+.mtoggle.active { border-color:#C8C8C8; background:var(--page-bg); color:var(--text-1); font-weight:600; }
+.mtoggle-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; opacity:0.35; }
+.mtoggle.active .mtoggle-dot { opacity:1; }
+.chart-wrap { padding:12px 20px 16px; position:relative; height:200px; }
+.chart-wrap canvas { width:100% !important; height:100% !important; }
+.max-warn { font-size:11px; color:var(--text-3); padding:0 20px 10px; display:none; }
+.max-warn.show { display:block; }
+/* ── SECTION 3 ── */
+.s3-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; gap:10px; }
+.s3-left { display:flex; align-items:center; gap:10px; }
+.s3-search { position:relative; }
+.s3-search input { width:240px; height:32px; border:1px solid var(--card-border); border-radius:var(--r-sm); padding:0 12px 0 30px; font-size:13px; font-family:'DM Sans',sans-serif; color:var(--text-1); background:var(--card-bg); outline:none; transition:border-color .15s; }
+.s3-search input:focus { border-color:var(--blue); }
+.s3-search input::placeholder { color:var(--text-4); }
+.s3-search svg { position:absolute; left:9px; top:50%; transform:translateY(-50%); width:13px; height:13px; stroke:var(--text-4); fill:none; stroke-width:1.8; pointer-events:none; }
+.s3-count { font-size:12px; color:var(--text-3); }
+.export-btn { display:flex; align-items:center; gap:5px; height:32px; padding:0 12px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-2); font-size:13px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; transition:all .12s; }
+.export-btn:hover { border-color:#C8C8C8; background:#FAFAFA; color:var(--text-1); }
+.export-btn svg { width:13px; height:13px; flex-shrink:0; }
+.bulk-bar { display:none; align-items:center; gap:8px; background:var(--blue-bg); border:1px solid #A0BFEF; border-radius:var(--r-sm); padding:7px 14px; margin-bottom:10px; }
+.bulk-bar.show { display:flex; }
+.bulk-label { font-size:13px; font-weight:500; color:var(--blue-dk); flex-shrink:0; }
+.bulk-sep { width:1px; height:16px; background:#A0BFEF; }
+.bulk-btn { height:26px; padding:0 10px; border-radius:var(--r-sm); border:1px solid #A0BFEF; background:var(--card-bg); color:var(--text-1); font-size:12px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; }
+.bulk-btn:hover { background:#dceefb; }
+.bulk-btn.red { color:var(--red); border-color:#F0B0A8; }
+.bulk-btn.red:hover { background:var(--red-bg); }
+.bulk-x { margin-left:auto; background:none; border:none; cursor:pointer; font-size:18px; color:var(--text-3); padding:0; line-height:1; }
+.tbl-wrap { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r-lg); overflow:hidden; }
+.tbl { width:100%; border-collapse:collapse; table-layout:fixed; }
+.tbl th { padding:9px 10px; text-align:left; font-size:11px; font-weight:600; color:var(--text-2); letter-spacing:.01em; border-bottom:1px solid var(--card-border); white-space:nowrap; background:#EEF1F8; cursor:pointer; user-select:none; transition:color .12s; }
+.tbl th:hover { color:var(--text-1); }
+.tbl th.active-sort { color:var(--blue); background:#E4EBF8; }
+.tbl th.r { text-align:right; }
+.tbl th.c { text-align:center; cursor:default; }
+.sort-icon { display:inline-flex; flex-direction:column; gap:1px; margin-left:3px; vertical-align:middle; }
+.sort-icon span { display:block; width:0; height:0; border-left:3px solid transparent; border-right:3px solid transparent; opacity:.2; }
+.sort-icon span.up { border-bottom:4px solid currentColor; }
+.sort-icon span.dn { border-top:4px solid currentColor; }
+.tbl th.sort-asc  .sort-icon span.up { opacity:1; }
+.tbl th.sort-desc .sort-icon span.dn { opacity:1; }
+.tbl td { padding:9px 10px; font-size:12px; color:var(--text-1); border-bottom:1px solid var(--card-border); vertical-align:middle; }
+.tbl td.r { text-align:right; font-variant-numeric:tabular-nums; }
+.tbl td.muted { color:var(--text-4); text-align:right; }
+.tbl tbody tr:last-child td { border-bottom:none; }
+.tbl tbody tr:hover td { background:#FAFAFA; }
+.tbl tbody tr.sel td { background:var(--blue-bg); }
+.tbl tbody tr.is-draft td { color:var(--text-3); }
+.tbl tbody tr.is-draft:hover td { background:#FAFAFA; }
+.tbl-check { width:14px; height:14px; accent-color:var(--blue); cursor:pointer; }
+.camp-name { font-size:12px; font-weight:500; color:var(--text-1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; transition:color .12s; text-decoration:none; display:flex; align-items:center; gap:3px; }
+.camp-name:hover { color:var(--blue); }
+.camp-name-arrow { opacity:0; font-size:10px; transition:opacity .12s; flex-shrink:0; color:var(--blue); }
+.camp-name:hover .camp-name-arrow { opacity:1; }
+.camp-dates { font-size:10px; color:var(--text-3); margin-top:1px; }
+.camp-tags { display:flex; gap:3px; margin-top:3px; }
+.tag { display:inline-flex; align-items:center; height:16px; padding:0 6px; border-radius:20px; font-size:10px; font-weight:600; white-space:nowrap; }
+.tag-product { background:#FEF3E6; color:#B05E00; }
+.tag-brand   { background:#EEF4FD; color:#1459C0; }
+.tag-display { background:#F0EEF8; color:#5B4AB5; }
+.tag-code    { background:transparent; color:var(--text-3); font-family:monospace; font-size:10px; font-weight:400; letter-spacing:.01em; padding:0; height:auto; }
+.tb-cell { display:flex; flex-direction:column; gap:1px; }
+.tb-targeting { font-size:11px; font-weight:600; color:var(--text-1); }
+.tb-bidding { font-size:10px; color:var(--text-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row-actions { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.row-act-btn { height:22px; padding:0 10px; border-radius:var(--r-sm); border:none; background:var(--blue); color:#fff; font-size:11px; font-weight:600; font-family:'DM Sans',sans-serif; cursor:pointer; white-space:nowrap; transition:all .12s; display:inline-flex; align-items:center; justify-content:center; min-width:72px; }
+.row-act-btn:hover { background:var(--blue-dk); }
+.sbadge { display:inline-flex; align-items:center; gap:4px; height:20px; padding:0 7px; border-radius:20px; font-size:11px; font-weight:600; white-space:nowrap; }
+.sbadge .sd { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.sbadge.active    { background:#E8F2FF; color:#1459C0; }
+.sbadge.active .sd  { background:#1A6FE8; }
+.sbadge.paused    { background:#FFF8E6; color:#B07700; }
+.sbadge.paused .sd  { background:#C07B00; }
+.sbadge.draft     { background:#F4F4F4; color:var(--text-3); }
+.sbadge.draft .sd   { background:var(--text-4); }
+.sbadge.exhausted { background:var(--red-bg); color:var(--red); }
+.sbadge.exhausted .sd { background:var(--red); }
+.sbadge.archived  { background:#F4F4F4; color:var(--text-3); }
+.sbadge.archived .sd  { background:var(--text-4); }
+.sbadge.completed { background:#EEF4FD; color:#1459C0; }
+.sbadge.completed .sd { background:#1A6FE8; }
+.row-edit-btn { width:20px; height:20px; border-radius:4px; border:1px solid transparent; background:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; color:var(--text-4); transition:all .12s; flex-shrink:0; padding:0; }
+.row-edit-btn:hover { background:var(--page-bg); border-color:var(--card-border); color:var(--blue); }
+.act-more-btn { height:22px; padding:0 10px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-3); font-size:11px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:all .12s; white-space:nowrap; min-width:72px; }
+.act-more-btn:hover { background:var(--page-bg); color:var(--text-1); border-color:#C8C8C8; }
+.act-wrap { position:relative; display:flex; align-items:center; justify-content:center; }
+.act-menu-btn { width:26px; height:26px; border-radius:var(--r-sm); border:none; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-3); font-size:15px; transition:background .12s; letter-spacing:.5px; }
+.act-menu-btn:hover { background:var(--page-bg); color:var(--text-1); }
+.act-menu { position:absolute; top:calc(100% + 4px); right:0; z-index:200; background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r); min-width:148px; padding:4px; box-shadow:0 4px 16px rgba(0,0,0,.10); display:none; }
+.act-menu.open { display:block; }
+.act-menu-item { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:var(--r-sm); font-size:13px; color:var(--text-1); cursor:pointer; transition:background .1s; }
+.act-menu-item:hover { background:var(--page-bg); }
+.act-menu-item.red { color:var(--red); }
+.act-menu-item.red:hover { background:var(--red-bg); }
+.act-sep { height:1px; background:var(--card-border); margin:3px 0; }
+.confirm-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:600; align-items:center; justify-content:center; }
+.confirm-overlay.show { display:flex; }
+.confirm-modal { background:var(--card-bg); border-radius:var(--r-lg); padding:28px 28px 24px; width:380px; box-shadow:0 12px 40px rgba(0,0,0,.18); animation:fadeUp .18s ease; }
+.confirm-modal-icon { width:40px; height:40px; border-radius:50%; background:#FFF3F2; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+.confirm-modal-icon svg { width:18px; height:18px; stroke:var(--red); fill:none; stroke-width:2; stroke-linecap:round; }
+.confirm-modal-title { font-size:15px; font-weight:600; color:var(--text-1); margin-bottom:6px; }
+.confirm-modal-msg { font-size:13px; color:var(--text-3); line-height:1.5; margin-bottom:22px; }
+.confirm-modal-actions { display:flex; justify-content:flex-end; gap:8px; }
+.confirm-yes { height:34px; padding:0 18px; background:var(--blue); border:none; color:#fff; font-size:13px; font-weight:600; font-family:'DM Sans',sans-serif; border-radius:var(--r-sm); cursor:pointer; transition:background .12s; }
+.confirm-yes:hover { background:var(--blue-dk); }
+.confirm-no  { height:34px; padding:0 18px; background:none; border:1px solid var(--card-border); color:var(--text-2); font-size:13px; font-weight:500; font-family:'DM Sans',sans-serif; border-radius:var(--r-sm); cursor:pointer; transition:all .12s; }
+.confirm-no:hover { background:var(--page-bg); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <svg width="54" height="22" viewBox="0 0 54 22" fill="none">
+      <circle cx="11" cy="11" r="10" fill="#1A1A1A"/>
+      <path d="M7.2 15V7.8h2L13 13V7.8h2.2V15H13.2l-3.8-5.2V15H7.2z" fill="white"/>
+      <text x="24" y="15.5" font-family="'DM Sans',Georgia,sans-serif" font-weight="700" font-size="13.5" fill="#1A1A1A" letter-spacing="-0.2">oon</text>
+    </svg>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="nav-item active">
+      <svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>
+      <span class="nav-label">Campaigns</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 20 20"><path d="M10 2l2 6.4H19l-5.5 4 2.1 6.4L10 14.7 4.4 18.8l2.1-6.4L1 8.4h7z"/></svg>
+      <span class="nav-label" style="font-size:8.5px">Recommen­dations</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 20 20"><rect x="2" y="5" width="16" height="12" rx="2"/><path d="M7 5V4a3 3 0 016 0v1"/><circle cx="10" cy="11" r="2"/></svg>
+      <span class="nav-label">Budget</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="13" rx="2"/><path d="M2 9h16"/><path d="M6 14h3M14 14h1"/></svg>
+      <span class="nav-label">Billing</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 20 20"><polyline points="2,15 6,9 10,12 14,6 18,8"/><polyline points="14,6 18,6 18,10"/></svg>
+      <span class="nav-label">Vantage</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="2.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.93 4.93l1.41 1.41M13.66 13.66l1.41 1.41M4.93 15.07l1.41-1.41M13.66 6.34l1.41-1.41"/></svg>
+      <span class="nav-label">Settings</span>
+    </div>
+  </nav>
+
+  <div class="sb-bottom">
+    <div class="sb-smiley">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="8" cy="9" r="1.3" fill="white"/>
+        <circle cx="14" cy="9" r="1.3" fill="white"/>
+        <path d="M7.5 13.5c1 1.5 6 1.5 7 0" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="sb-flag">🇦🇪</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <button class="tn-hamburger">
+      <svg viewBox="0 0 18 14"><line x1="1" y1="1" x2="17" y2="1"/><line x1="1" y1="7" x2="17" y2="7"/><line x1="1" y1="13" x2="17" y2="13"/></svg>
+    </button>
+
+    <!-- noon wordmark -->
+    <svg width="58" height="22" viewBox="0 0 58 22" fill="none" style="flex-shrink:0">
+      <circle cx="11" cy="11" r="10" fill="#1A1A1A"/>
+      <path d="M7.2 15V7.8h2L13 13V7.8h2.2V15H13.2l-3.8-5.2V15H7.2z" fill="white"/>
+      <text x="24" y="15.5" font-family="'DM Sans',Georgia,sans-serif" font-weight="700" font-size="13.5" fill="#1A1A1A" letter-spacing="-0.2">oon</text>
+    </svg>
+
+    <div class="tn-divider"></div>
+
+    <div class="tn-workspace">
+      <span>9999 | noon IDP</span>
+      <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div class="tn-search">
+      <svg class="si" viewBox="0 0 18 18"><circle cx="8" cy="8" r="5"/><path d="M13 13l3 3" stroke-linecap="round"/></svg>
+      <input type="text" placeholder="Search...">
+      <span class="sk">⌘K</span>
+    </div>
+
+    <div class="tn-right">
+      <button class="tn-icon">
+        <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M7.5 7.5a2.5 2.5 0 015 .83c0 1.67-2.5 2.5-2.5 2.5" stroke-linecap="round"/><circle cx="10" cy="15" r=".6" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <button class="tn-icon">
+        <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 016 6v3l1.5 2.5h-15L4 11V8a6 6 0 016-6z"/><path d="M8 16.5a2 2 0 004 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="tn-icon">
+        <svg viewBox="0 0 20 20"><path d="M16 4v12l-6-3H4a1 1 0 01-1-1V8a1 1 0 011-1h6z"/><path d="M16 7a3 3 0 010 6"/></svg>
+      </button>
+      <button class="tn-icon">
+        <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 3c-2.5 3-2.5 11 0 14M3 10h14"/><path d="M4.5 7h11M4.5 13h11"/></svg>
+      </button>
+      <div class="tn-avatar">A</div>
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <main class="page">
+    <div class="overview-view" id="overviewView">
+
+    <!-- TOP ROW: title + create campaign -->
+    <div class="ph">
+      <div class="ph-left">
+        <h1>All campaigns</h1>
+        <div class="ph-meta">
+          <span class="live-dot"></span>
+          <span>Last Updated: 1 minutes ago</span>
+        </div>
+      </div>
+      <div class="ph-right">
+        <button class="btn-create">
+          <svg viewBox="0 0 12 12"><path d="M6 1v10M1 6h10"/></svg>
+          + Create Campaign
+        </button>
+      </div>
+    </div>
+
+    <!-- FILTER ROW: date first, then optional filters -->
+    <div class="fbar">
+      <div class="fbar-left">
+        <!-- Date — first, preselected -->
+        <div class="ddw">
+          <button class="fbtn active" id="db" onclick="tdd('ddd','db')">
+            <svg viewBox="0 0 14 14"><rect x="1" y="2" width="12" height="11" rx="1.5"/><path d="M4.5 1v2.5M9.5 1v2.5M1 6h12"/></svg>
+            <span id="dlabel">Last 30 days</span>
+            <svg class="fchev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="date-dd" id="ddd">
+            <div class="dp" onclick="sd(this,'Today')">Today</div>
+            <div class="dp" onclick="sd(this,'Yesterday')">Yesterday</div>
+            <div class="dp" onclick="sd(this,'Last 7 days')">Last 7 days</div>
+            <div class="dp" onclick="sd(this,'This week')">This week</div>
+            <div class="dp" onclick="sd(this,'Last week')">Last week</div>
+            <div class="dp sel" onclick="sd(this,'Last 30 days')">Last 30 days</div>
+            <div class="dp" onclick="sd(this,'This month')">This month</div>
+            <div class="dp" onclick="sd(this,'Last month')">Last month</div>
+            <div class="dp" onclick="sd(this,'Year to date')">Year to date</div>
+          </div>
+        </div>
+
+        <!-- Status — optional, not preselected -->
+        <div class="ddw" id="sw">
+          <button class="fbtn" id="sb" onclick="tdd('sdd','sb')">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="5"/><path d="M7 4.5V7l1.5 1.5" stroke-linecap="round"/></svg>
+            <span id="sbLabel">Status</span>
+            <svg class="fchev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dd" id="sdd">
+            <div class="dd-lbl">Campaign status</div>
+            <label class="dd-row"><input type="checkbox" data-g="status" value="Active"><span class="sdot active"></span>Active</label>
+            <label class="dd-row"><input type="checkbox" data-g="status" value="Paused"><span class="sdot paused"></span>Paused</label>
+            <label class="dd-row"><input type="checkbox" data-g="status" value="Draft"><span class="sdot draft"></span>Draft</label>
+            <label class="dd-row"><input type="checkbox" data-g="status" value="Archived"><span class="sdot archived"></span>Archived</label>
+            <label class="dd-row"><input type="checkbox" data-g="status" value="Budget exhausted"><span class="sdot exh"></span>Budget exhausted</label>
+            <div class="dd-sep"></div>
+            <div class="dd-foot">
+              <button class="dd-clear" onclick="clearG('status')">Clear</button>
+              <button class="dd-apply" onclick="applyF('sdd','sb','status','Status','sbLabel')">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ad type — optional, not preselected -->
+        <div class="ddw" id="aw">
+          <button class="fbtn" id="ab" onclick="tdd('add','ab')">
+            <svg viewBox="0 0 14 14"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>
+            <span id="abLabel">Ad type</span>
+            <svg class="fchev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dd" id="add">
+            <div class="dd-lbl">Ad type</div>
+            <label class="dd-row"><input type="checkbox" data-g="adtype" value="Product">Product ad</label>
+            <label class="dd-row"><input type="checkbox" data-g="adtype" value="Brand">Brand ad</label>
+            <label class="dd-row"><input type="checkbox" data-g="adtype" value="Display">Display ad</label>
+            <div class="dd-sep"></div>
+            <div class="dd-foot">
+              <button class="dd-clear" onclick="clearG('adtype')">Clear</button>
+              <button class="dd-apply" onclick="applyF('add','ab','adtype','Ad type','abLabel')">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHIPS: only shown when optional filters active -->
+    <div class="chips" id="chips" style="display:none"></div>
+    <div id="filterNote" style="display:none;font-size:12px;color:var(--text-3);margin-bottom:10px;margin-top:-4px">
+      Filters applied above — table shows matching campaigns only
+    </div>
+
+
+
+    <!-- METRICS CARD -->
+    <div class="mcard">
+      <div class="metrics-row">
+        <div class="mc">
+          <div class="mc-lbl">Ad Spends <button class="ibt" data-tip="Total ad spend in selected period">i</button></div>
+          <div class="mc-val">د.إ 18,813</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">Revenue <button class="ibt" data-tip="Total attributed revenue from ads">i</button></div>
+          <div class="mc-val">د.إ 151,616</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">ROAS <button class="ibt" data-tip="Return on ad spend: Revenue ÷ Spends">i</button></div>
+          <div class="mc-val">8.06</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">eCPC <button class="ibt" data-tip="Effective cost per click">i</button></div>
+          <div class="mc-val">د.إ 1.35</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">Ad Orders <button class="ibt" data-tip="Total orders attributed to ads">i</button></div>
+          <div class="mc-val">1,418</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">CTR <button class="ibt" data-tip="Clicks ÷ Impressions">i</button></div>
+          <div class="mc-val">1.8%</div>
+        </div>
+        <div class="mc" style="border-right:none">
+          <div class="mc-lbl">CVR <button class="ibt" data-tip="Orders ÷ Clicks">i</button></div>
+          <div class="mc-val">10.2%</div>
+        </div>
+      </div>
+
+      <!-- Show more: absolute volume numbers -->
+      <div class="tert" id="tert">
+        <div class="tert-grid">
+          <div class="tm-cell"><div class="tm-lbl">Clicks <button class="ibt" data-tip="Total ad clicks">i</button></div><div class="tm-val">13,921</div></div>
+          <div class="tm-cell"><div class="tm-lbl">Views <button class="ibt" data-tip="Total ad impressions/views">i</button></div><div class="tm-val">775,482</div></div>
+          <div class="tm-cell" style="border-right:none"><div class="tm-lbl">ATC <button class="ibt" data-tip="Add to cart events">i</button></div><div class="tm-val">4,575</div></div>
+        </div>
+      </div>
+      <div class="sm-row">
+        <button class="sm-link" id="smBtn" onclick="toggleTert()">
+          <svg class="sm-icon" viewBox="0 0 14 14"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>
+          <span id="smLabel">Show other metrics</span>
+          <svg class="sm-chev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <!-- Trends toggle — collapsed by default, lives inside metrics card -->
+      <button class="trends-toggle-row" id="trendsToggleBtn" onclick="toggleTrendsPanel()">
+        <svg class="trends-icon" viewBox="0 0 18 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 5,7 9,9 13,4 17,6"/></svg>
+        <span class="trends-lbl">Show Trends</span>
+        <svg class="trends-chev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="trends-collapse" id="trendsPanel">
+        <div class="chart-header" style="border-top:1px solid var(--card-border)">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="chart-title">Trends</span>
+            <span id="chartDateLabel" style="font-size:12px;color:var(--text-3);font-weight:400">Last 30 days</span>
+          </div>
+          <div class="metric-toggles" id="metricToggles">
+            <button class="mtoggle active" data-metric="revenue" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#2D8653"></span>Revenue
+            </button>
+            <button class="mtoggle active" data-metric="spends" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#1A6FE8"></span>Ad Spends
+            </button>
+            <button class="mtoggle" data-metric="roas" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#F5A623"></span>ROAS
+            </button>
+            <button class="mtoggle" data-metric="orders" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#9B59B6"></span>Ad Orders
+            </button>
+            <button class="mtoggle" data-metric="ctr" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#E67E22"></span>CTR
+            </button>
+            <button class="mtoggle" data-metric="ecpc" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#2980B9"></span>eCPC
+            </button>
+            <button class="mtoggle" data-metric="cvr" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#E74C3C"></span>CVR
+            </button>
+            <button class="mtoggle" data-metric="clicks" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#1ABC9C"></span>Clicks
+            </button>
+            <button class="mtoggle" data-metric="views" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#7F8C8D"></span>Views
+            </button>
+            <button class="mtoggle" data-metric="atc" onclick="toggleMetric(this)">
+              <span class="mtoggle-dot" style="background:#C0392B"></span>ATC
+            </button>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="perfChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: CAMPAIGN TABLE -->
+    <div class="s3-header">
+      <div class="s3-left">
+        <div class="s3-search">
+          <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search by campaign name" id="campSearch" oninput="filterTable()">
+        </div>
+        <span class="s3-count" id="campCount">14 campaigns</span>
+      </div>
+    </div>
+
+    <div class="bulk-bar" id="bulkBar">
+      <span class="bulk-label" id="bulkLabel">0 selected</span>
+      <div class="bulk-sep"></div>
+      <button class="bulk-btn" id="bulkPauseBtn" onclick="bulkAction('pause')">Pause</button>
+      <button class="bulk-btn" id="bulkActivateBtn" onclick="bulkAction('activate')">Activate</button>
+      <button class="bulk-btn" onclick="bulkAction('editbudget')">Edit budget</button>
+      <button class="bulk-btn red" onclick="bulkAction('archive')">Archive</button>
+      <div class="bulk-sep"></div>
+      <button class="bulk-btn" onclick="bulkAction('export')">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" style="width:12px;height:12px;margin-right:3px"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1"/></svg>
+        Export
+      </button>
+      <button class="bulk-x" onclick="clearSelection()">×</button>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="tbl" id="campTable">
+        <thead>
+          <tr>
+            <th style="width:36px" class="c"><input type="checkbox" class="tbl-check" id="checkAll" onchange="toggleAll(this)"></th>
+            <th style="width:18%" onclick="sortTable('name')">Campaign <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:90px" onclick="sortTable('status')">Status <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:110px" onclick="sortTable('targeting')">Targeting & Bid <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:75px" class="r" onclick="sortTable('budget')">Budget (د.إ) <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:75px" class="r" onclick="sortTable('spends')">Spends (د.إ) <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:80px" class="r" onclick="sortTable('revenue')">Revenue (د.إ) <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:65px" class="r" onclick="sortTable('roas')">ROAS <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:68px" class="r" onclick="sortTable('ecpc')">eCPC (د.إ) <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:65px" class="r" onclick="sortTable('orders')">Orders <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:60px" class="r" onclick="sortTable('ctr')">CTR <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:60px" class="r" onclick="sortTable('cvr')">CVR <span class="sort-icon"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:110px" class="c">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="campBody"></tbody>
+      </table>
+    </div>
+
+    <div class="confirm-overlay" id="confirmToast">
+      <div class="confirm-modal">
+        <div class="confirm-modal-icon">
+          <svg viewBox="0 0 18 18"><path d="M9 3v6M9 13h.01"/><circle cx="9" cy="9" r="8"/></svg>
+        </div>
+        <div class="confirm-modal-title" id="confirmTitle">Confirm action</div>
+        <div class="confirm-modal-msg" id="confirmMsg">Are you sure?</div>
+        <div class="confirm-modal-actions">
+          <button class="confirm-no" onclick="hideConfirm()">Cancel</button>
+          <button class="confirm-yes" id="confirmYes">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /overview-view -->
+
+    <!-- EDIT MODAL — shared across overview + detail views -->
+    <div id="editModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:600;align-items:center;justify-content:center;">
+      <div style="background:var(--card-bg);border-radius:var(--r-lg);padding:24px;width:400px;box-shadow:0 8px 32px rgba(0,0,0,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+          <h3 id="editModalTitle" style="font-size:15px;font-weight:600;color:var(--text-1);">Edit budget</h3>
+          <button onclick="closeEditModal()" style="background:none;border:none;cursor:pointer;font-size:20px;color:var(--text-3);line-height:1;padding:0;">x</button>
+        </div>
+        <div id="editModalBody" style="margin-bottom:20px;font-size:13px;color:var(--text-2);"></div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;">
+          <button onclick="closeEditModal()" style="height:32px;padding:0 14px;border-radius:var(--r-sm);border:1px solid var(--card-border);background:var(--page-bg);color:var(--text-2);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">Cancel</button>
+          <button onclick="closeEditModal()" style="height:32px;padding:0 14px;border-radius:var(--r-sm);border:none;background:var(--blue);color:#fff;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;">Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         DETAIL VIEW
+    ═══════════════════════════════════════ -->
+    <div class="detail-view" id="detailView">
+
+      <!-- breadcrumb -->
+      <div class="bc">
+        <button class="bc-back" onclick="closeDetail()">
+          <svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          All campaigns
+        </button>
+        <span class="bc-sep">/</span>
+        <span class="bc-crumb" id="detailBcName"></span>
+      </div>
+
+      <!-- ─── SECTION 1: CAMPAIGN HEADER CARD ─── -->
+      <div class="dh-card">
+
+        <!-- top row: name + status + actions -->
+        <div class="dh-top">
+          <div class="dh-left">
+            <div class="dh-name-row">
+              <span class="dh-name-display" id="dhNameDisplay" onclick="dhStartEdit()">
+                <span class="dh-name-text" id="dhNameText"></span>
+                <span class="dh-edit-hint"><svg viewBox="0 0 12 12"><path d="M7.5 2l2.5 2.5L3.5 11H1V8.5L7.5 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              </span>
+              <input class="dh-name-input" id="dhNameInput" type="text" onblur="dhFinishEdit()" onkeydown="dhNameKey(event)">
+              <span class="sbadge" id="dhStatusBadge"><span class="sd"></span><span id="dhStatusText"></span></span>
+              <span class="tag" id="dhTypeTag"></span>
+              <span class="tag tag-code" id="dhCodeTag" style="font-size:11px;color:var(--text-3);font-family:monospace"></span>
+            </div>
+          </div>
+          <div class="dh-actions">
+            <button class="dh-toggle-btn" id="dhToggleBtn" onclick="dhRequestToggle()">
+              <svg id="dhToggleIcon" viewBox="0 0 12 12"></svg>
+              <span id="dhToggleLabel"></span>
+            </button>
+            <div class="dh-more-wrap">
+              <button class="dh-more-btn" id="dhMoreBtn" onclick="dhToggleMoreDd()">
+                More
+                <svg viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="dh-more-dd" id="dhMoreDd">
+                <div class="dh-dd-item" onclick="dhCloseMoreDd()">
+                  <svg viewBox="0 0 12 12"><rect x="1.5" y="1" width="9" height="10" rx="1.5"/><path d="M3.5 4.5h5M3.5 7h3" stroke-linecap="round"/></svg>
+                  Duplicate
+                </div>
+                <div class="dh-dd-sep"></div>
+                <div class="dh-dd-item red" onclick="dhCloseMoreDd()">
+                  <svg viewBox="0 0 12 12"><path d="M1.5 3h9M4.5 3V2h3v1M9.5 3l-.6 7H3.1L2.5 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Archive
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- settings grid: Duration | Targeting & Bid | Budget | Top of Search Bid% | Negative Targeting -->
+        <div class="dh-settings" id="dhSettings"></div>
+
+      </div>
+
+      <!-- date filter — standalone row above metrics card, matching overview pattern -->
+      <div class="fbar" style="margin-bottom:10px;">
+        <div class="fbar-left" style="align-items:center;gap:12px;">
+          <span style="font-size:15px;font-weight:600;color:var(--text-1);">Performance</span>
+          <div class="ddw">
+            <button class="fbtn active" id="dhdb" onclick="dhTdd('dhddd','dhdb')">
+              <svg viewBox="0 0 14 14"><rect x="1" y="2" width="12" height="11" rx="1.5"/><path d="M4.5 1v2.5M9.5 1v2.5M1 6h12"/></svg>
+              <span id="dhdlabel">Last 30 days</span>
+              <svg class="fchev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="date-dd" id="dhddd">
+              <div class="dp" onclick="dhSd(this,'Today')">Today</div>
+              <div class="dp" onclick="dhSd(this,'Yesterday')">Yesterday</div>
+              <div class="dp" onclick="dhSd(this,'Last 7 days')">Last 7 days</div>
+              <div class="dp" onclick="dhSd(this,'This week')">This week</div>
+              <div class="dp" onclick="dhSd(this,'Last week')">Last week</div>
+              <div class="dp sel" onclick="dhSd(this,'Last 30 days')">Last 30 days</div>
+              <div class="dp" onclick="dhSd(this,'This month')">This month</div>
+              <div class="dp" onclick="dhSd(this,'Last month')">Last month</div>
+              <div class="dp" onclick="dhSd(this,'Year to date')">Year to date</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 2: PERFORMANCE METRICS ─── -->
+      <div class="mcard">
+
+        <!-- primary 7-metric row (same .metrics-row / .mc as overview) -->
+        <div class="metrics-row" id="dhMetricsRow"></div>
+
+        <!-- show other metrics: Clicks / Views / ATC -->
+        <div class="tert" id="dhTert">
+          <div class="tert-grid" id="dhTertGrid"></div>
+        </div>
+        <div class="sm-row">
+          <button class="sm-link" id="dhSmBtn" onclick="dhToggleTert()">
+            <svg class="sm-icon" viewBox="0 0 14 14"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="8" y="1" width="5" height="5" rx="1"/><rect x="1" y="8" width="5" height="5" rx="1"/><rect x="8" y="8" width="5" height="5" rx="1"/></svg>
+            <span id="dhSmLabel">Show other metrics</span>
+            <svg class="sm-chev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <!-- trends toggle (lazy chart init) -->
+        <button class="trends-toggle-row" id="dhTrendsToggleBtn" onclick="dhToggleTrends()">
+          <svg class="trends-icon" viewBox="0 0 18 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 5,7 9,9 13,4 17,6"/></svg>
+          <span class="trends-lbl" id="dhTrendsLbl">Show Trends</span>
+          <svg class="trends-chev" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="trends-collapse" id="dhTrendsPanel">
+          <div class="chart-header" style="border-top:1px solid var(--card-border)">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="chart-title">Trends</span>
+              <span id="dhChartDateLabel" style="font-size:12px;color:var(--text-3);font-weight:400">Last 30 days</span>
+            </div>
+            <div class="metric-toggles" id="dhMetricToggles">
+              <button class="mtoggle active" data-dmetric="revenue" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#2D8653"></span>Revenue</button>
+              <button class="mtoggle active" data-dmetric="spends" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#1A6FE8"></span>Ad Spends</button>
+              <button class="mtoggle" data-dmetric="roas" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#F5A623"></span>ROAS</button>
+              <button class="mtoggle" data-dmetric="orders" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#9B59B6"></span>Ad Orders</button>
+              <button class="mtoggle" data-dmetric="ctr" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#E67E22"></span>CTR</button>
+              <button class="mtoggle" data-dmetric="ecpc" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#2980B9"></span>eCPC</button>
+              <button class="mtoggle" data-dmetric="cvr" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#E74C3C"></span>CVR</button>
+              <button class="mtoggle" data-dmetric="clicks" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#1ABC9C"></span>Clicks</button>
+              <button class="mtoggle" data-dmetric="views" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#7F8C8D"></span>Views</button>
+              <button class="mtoggle" data-dmetric="atc" onclick="dhToggleMetric(this)"><span class="mtoggle-dot" style="background:#C0392B"></span>ATC</button>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="dhPerfChart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ─── SECTION 3: ADVERTISED PRODUCTS ─── -->
+      <div class="d-s3-header">
+        <div class="d-s3-left">
+          <span class="d-s3-title">Advertised products</span>
+          <span class="d-s3-count" id="dhProdCount">6 products</span>
+        </div>
+        <div class="fbar-right">
+          <div class="s3-search" style="position:relative;">
+            <svg style="position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--text-4);fill:none;stroke-width:1.8;pointer-events:none;" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search products" id="dhProdSearch" oninput="dhFilterProds()" style="width:200px;height:32px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px 0 30px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--card-bg);outline:none;">
+          </div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table class="tbl" id="dhProdTable" style="table-layout:fixed;">
+          <thead>
+            <tr>
+              <th style="width:36%">Product</th>
+              <th style="width:80px">Status</th>
+              <th style="width:80px" class="r">Bid (د.إ)</th>
+              <th style="width:80px" class="r">Spends (د.إ)</th>
+              <th style="width:80px" class="r">Revenue (د.إ)</th>
+              <th style="width:65px" class="r">ROAS</th>
+              <th style="width:65px" class="r">Orders</th>
+              <th style="width:55px" class="r">CTR</th>
+            </tr>
+          </thead>
+          <tbody id="dhProdBody"></tbody>
+        </table>
+      </div>
+
+    </div><!-- /detail-view -->
+
+    <!-- SECTION 3 HTML injected via JS below -->
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+function tdd(id, btnId) {
+  var all = document.querySelectorAll('.dd,.date-dd');
+  var isOpen = document.getElementById(id).classList.contains('open');
+  all.forEach(function(d){d.classList.remove('open');});
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('open');});
+  if (!isOpen) {
+    document.getElementById(id).classList.add('open');
+    document.getElementById(btnId).classList.add('open');
+  }
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.ddw')) {
+    document.querySelectorAll('.dd,.date-dd').forEach(function(d){d.classList.remove('open');});
+    document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('open');});
+  }
+});
+function clearG(g) {
+  document.querySelectorAll('[data-g="'+g+'"]').forEach(function(c){c.checked=false;});
+}
+function applyF(ddId, btnId, g, label, lblId) {
+  document.getElementById(ddId).classList.remove('open');
+  document.getElementById(btnId).classList.remove('open');
+  var checked = [];
+  document.querySelectorAll('[data-g="'+g+'"]:checked').forEach(function(c){checked.push(c.value);});
+  var btn = document.getElementById(btnId);
+  var lbl = document.getElementById(lblId);
+  if (checked.length > 0) {
+    btn.classList.add('active');
+    lbl.textContent = label+': '+(checked.length<=2?checked.join(', '):checked[0]+' +'+(checked.length-1));
+  } else {
+    btn.classList.remove('active');
+    lbl.textContent = label;
+  }
+  renderChips();
+}
+function sd(el, label) {
+  document.querySelectorAll('.dp').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('dlabel').textContent = label;
+  document.getElementById('ddd').classList.remove('open');
+  document.getElementById('db').classList.remove('open');
+  var cl = document.getElementById('chartDateLabel');
+  if (cl) cl.textContent = label;
+  renderChips();
+}
+function renderChips() {
+  var c = document.getElementById('chips');
+  c.innerHTML = '';
+  var any = false;
+  ['status','adtype'].forEach(function(g) {
+    document.querySelectorAll('[data-g="'+g+'"]:checked').forEach(function(cb) {
+      any = true;
+      var ch = document.createElement('span'); ch.className='chip';
+      ch.innerHTML = cb.value+' <button onclick="rc(this,\''+cb.value+'\',\''+g+'\')">x</button>';
+      c.appendChild(ch);
+    });
+  });
+  if (any) {
+    var lbl = document.createElement('span'); lbl.className='chip-lbl'; lbl.textContent='Filters:';
+    c.insertBefore(lbl, c.firstChild);
+    var ca=document.createElement('button'); ca.className='chip-clear'; ca.textContent='Clear all'; ca.onclick=clearAll;
+    c.appendChild(ca);
+    c.style.display='flex';
+  } else {
+    c.style.display='none';
+  }
+  var note = document.getElementById('filterNote');
+  if (note) note.style.display = any ? 'block' : 'none';
+  filterTable();
+}
+function rc(btn, val, g) {
+  var cb=document.querySelector('[data-g="'+g+'"][value="'+val+'"]');
+  if(cb) cb.checked=false;
+  btn.closest('.chip').remove();
+  renderChips();
+}
+function clearAll() {
+  document.querySelectorAll('[data-g]').forEach(function(c){c.checked=false;});
+  document.getElementById('sb').classList.remove('active');
+  document.getElementById('ab').classList.remove('active');
+  document.getElementById('sbLabel').textContent='Status';
+  document.getElementById('abLabel').textContent='Ad type';
+  renderChips();
+}
+function toggleTert() {
+  var t=document.getElementById('tert');
+  var b=document.getElementById('smBtn');
+  var open=t.classList.toggle('open');
+  b.classList.toggle('open',open);
+  document.getElementById('smLabel').textContent=open?'Hide other metrics':'Show other metrics';
+}
+
+var trendsChartInit = false;
+
+function toggleTrendsPanel() {
+  var panel = document.getElementById('trendsPanel');
+  var btn = document.getElementById('trendsToggleBtn');
+  var open = panel.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  if (open && !trendsChartInit) {
+    trendsChartInit = true;
+    setTimeout(function(){ initChart(); }, 50);
+  }
+}
+
+var labels = ['11 Mar','13 Mar','15 Mar','17 Mar','19 Mar','21 Mar','23 Mar','25 Mar','27 Mar','29 Mar','31 Mar','2 Apr','4 Apr','6 Apr','8 Apr','10 Apr'];
+
+var datasets = {
+  revenue: {
+    label:'Revenue',
+    data:[5800,6200,5900,3800,2800,11800,5600,2200,8700,6500,6100,1200,3200,2800,8900,9200],
+    color:'#2D8653', yAxis:'y'
+  },
+  spends: {
+    label:'Ad Spends',
+    data:[680,720,690,420,310,1380,650,260,1020,760,710,140,370,330,1040,1070],
+    color:'#1A6FE8', yAxis:'y'
+  },
+  roas: {
+    label:'ROAS',
+    data:[8.5,8.6,8.5,9.0,9.0,8.5,8.6,8.5,8.5,8.5,8.6,8.6,8.6,8.5,8.6,8.6],
+    color:'#F5A623', yAxis:'y2'
+  },
+  orders: {
+    label:'Ad Orders',
+    data:[82,90,85,55,40,168,80,32,124,95,88,18,46,41,128,135],
+    color:'#9B59B6', yAxis:'y'
+  },
+  ctr: {
+    label:'CTR %',
+    data:[1.7,1.8,1.7,1.9,2.0,1.8,1.8,1.9,1.8,1.8,1.8,1.9,1.9,1.8,1.8,1.8],
+    color:'#E67E22', yAxis:'y2'
+  },
+  ecpc: {
+    label:'eCPC',
+    data:[1.4,1.35,1.4,1.3,1.3,1.35,1.38,1.32,1.35,1.38,1.36,1.35,1.36,1.38,1.35,1.35],
+    color:'#2980B9', yAxis:'y2'
+  },
+  cvr: {
+    label:'CVR %',
+    data:[9.8,10.2,9.9,10.5,10.8,10.1,10.0,10.4,10.2,10.2,10.3,10.5,10.4,10.1,10.2,10.3],
+    color:'#E74C3C', yAxis:'y2'
+  },
+  clicks: {
+    label:'Clicks',
+    data:[840,890,860,580,390,1680,800,310,1230,950,860,170,450,400,1260,1310],
+    color:'#1ABC9C', yAxis:'y'
+  },
+  views: {
+    label:'Views',
+    data:[48000,51000,49000,33000,22000,96000,46000,18000,70000,54000,49000,10000,26000,23000,72000,75000],
+    color:'#7F8C8D', yAxis:'y'
+  },
+  atc: {
+    label:'ATC',
+    data:[210,225,215,140,100,420,200,78,310,238,215,42,112,100,315,330],
+    color:'#C0392B', yAxis:'y'
+  }
+};
+
+var activeMetrics = ['revenue','spends'];
+var MAX_METRICS = 2;
+var perfChart;
+
+function buildChartDatasets() {
+  return activeMetrics.map(function(key) {
+    var d = datasets[key];
+    return {
+      label: d.label,
+      data: d.data,
+      borderColor: d.color,
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: d.color,
+      tension: 0.4,
+      yAxisID: d.yAxis
+    };
+  });
+}
+
+function initChart() {
+  var ctx = document.getElementById('perfChart').getContext('2d');
+  perfChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: labels, datasets: buildChartDatasets() },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode:'index', intersect:false },
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor:'#1A1A1A',
+          titleColor:'#9A9A9A',
+          bodyColor:'#ffffff',
+          padding:10,
+          titleFont:{ family:'DM Sans', size:11 },
+          bodyFont:{ family:'DM Sans', size:12, weight:'600' },
+          callbacks: {
+            label: function(ctx) {
+              var k = activeMetrics[ctx.datasetIndex];
+              var v = ctx.parsed.y;
+              if (k==='roas') return ' ROAS: '+v.toFixed(2);
+              if (k==='ecpc') return ' eCPC: د.إ '+v.toFixed(2);
+              if (k==='ctr') return ' CTR: '+v.toFixed(1)+'%';
+              if (k==='cvr') return ' CVR: '+v.toFixed(1)+'%';
+              if (k==='orders') return ' Ad Orders: '+Math.round(v);
+              if (k==='clicks') return ' Clicks: '+Math.round(v).toLocaleString();
+              if (k==='views') return ' Views: '+Math.round(v).toLocaleString();
+              if (k==='atc') return ' ATC: '+Math.round(v).toLocaleString();
+              if (k==='revenue') return ' Revenue: د.إ '+Math.round(v).toLocaleString();
+              if (k==='spends') return ' Ad Spends: د.إ '+Math.round(v).toLocaleString();
+              return ' '+v;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color:'#F0F0F0', drawBorder:false },
+          ticks: { color:'#9A9A9A', font:{ family:'DM Sans', size:10 }, maxRotation:0, autoSkip:true, maxTicksLimit:8 },
+          border: { display:false }
+        },
+        y: {
+          position:'left',
+          grid: { color:'#F0F0F0', drawBorder:false },
+          ticks: {
+            color:'#9A9A9A',
+            font:{ family:'DM Sans', size:10 },
+            maxTicksLimit:6,
+            callback: function(v){ var n=Math.round(v); return n>=1000?'د.إ '+(n/1000).toFixed(0)+'K':'د.إ '+n; }
+          },
+          border: { display:false }
+        },
+        y2: {
+          position:'right',
+          display: false,
+          grid: { display:false },
+          ticks: {
+            color:'#9A9A9A',
+            font:{ family:'DM Sans', size:10 },
+            maxTicksLimit:6,
+            callback: function(v){ return parseFloat(v.toFixed(2))+''; }
+          },
+          border: { display:false }
+        }
+      }
+    }
+  });
+}
+
+function isPercentMetric(k){ return k==='roas'||k==='ctr'||k==='cvr'||k==='ecpc'; }
+function hasPercentAxis(){ return activeMetrics.some(function(k){ return isPercentMetric(k); }); }
+
+function toggleMetric(btn) {
+  var metric = btn.getAttribute('data-metric');
+  var isActive = btn.classList.contains('active');
+  if (isActive) {
+    if (activeMetrics.length <= 1) return;
+    activeMetrics = activeMetrics.filter(function(m){ return m !== metric; });
+    btn.classList.remove('active');
+  } else {
+    if (activeMetrics.length >= MAX_METRICS) {
+      var first = activeMetrics.shift();
+      document.querySelector('[data-metric="'+first+'"]').classList.remove('active');
+    }
+    activeMetrics.push(metric);
+    btn.classList.add('active');
+  }
+  perfChart.data.datasets = buildChartDatasets();
+  perfChart.options.scales.y2.display = hasPercentAxis();
+  perfChart.update('active');
+}
+
+// Chart initialises on first trends toggle open
+
+var campaigns = [
+  { id:1,  code:'C_NXJENDNDKD1', name:'Summer Sale - Product Ads',  type:'product', targeting:'Auto',   bidding:'Dynamic Up-Down', status:'active',    startDate:'1 Mar 2026',  endDate:'30 Apr 2026',  budget:500,  spends:312,  revenue:2540, roas:8.14, ecpc:1.32, orders:186, ctr:2.1, cvr:11.2 },
+  { id:2,  code:'C_BNDQ2R7X92A', name:'Brand Awareness Q2',         type:'brand',   targeting:'Manual', bidding:'Fixed CPC',       status:'active',    startDate:'1 Apr 2026',  endDate:null,           budget:300,  spends:278,  revenue:1890, roas:6.80, ecpc:1.45, orders:124, ctr:1.9, cvr:9.8  },
+  { id:3,  code:'C_RMDN2026X3B', name:'Ramadan Campaign',           type:'product', targeting:'Auto',   bidding:'Dynamic Up',      status:'paused',    startDate:'1 Mar 2026',  endDate:'15 Apr 2026',  budget:800,  spends:640,  revenue:5100, roas:7.97, ecpc:1.28, orders:374, ctr:2.3, cvr:12.1 },
+  { id:4,  code:'C_ELCM4NBDS4C', name:'Electronics - Manual Bids',  type:'product', targeting:'Manual', bidding:'Fixed CPC',       status:'active',    startDate:'15 Mar 2026', endDate:null,           budget:400,  spends:198,  revenue:1620, roas:8.18, ecpc:1.19, orders:142, ctr:1.7, cvr:10.4 },
+  { id:5,  code:'C_DSPLY5NWRV5', name:'New Arrivals Display',       type:'display', targeting:'Auto',   bidding:'Dynamic Up-Down', status:'active',    startDate:'5 Apr 2026',  endDate:'5 May 2026',   budget:200,  spends:187,  revenue:980,  roas:5.24, ecpc:1.68, orders:72,  ctr:1.2, cvr:7.3  },
+  { id:6,  code:'C_FLSH6WKND6D', name:'Flash Sale - Weekend',       type:'product', targeting:'Auto',   bidding:'Dynamic Up',      status:'exhausted', startDate:'8 Apr 2026',  endDate:'10 Apr 2026',  budget:150,  spends:150,  revenue:1240, roas:8.27, ecpc:1.22, orders:98,  ctr:2.4, cvr:13.0 },
+  { id:7,  code:'C_CLRC7STCK7E', name:'Clearance Stock Push',       type:'product', targeting:'Manual', bidding:'Fixed CPC',       status:'draft',     startDate:'20 Apr 2026', endDate:'20 May 2026',  budget:250,  spends:0,    revenue:0,    roas:0,    ecpc:0,    orders:0,   ctr:0,   cvr:0    },
+  { id:8,  code:'C_BRND8SRCH8F', name:'Brand - Top of Search',      type:'brand',   targeting:'Manual', bidding:'Dynamic Up-Down', status:'paused',    startDate:'1 Feb 2026',  endDate:null,           budget:600,  spends:420,  revenue:3360, roas:8.00, ecpc:1.38, orders:248, ctr:2.0, cvr:10.9 },
+  { id:9,  code:'C_HOML9PRMO9G', name:'Home & Living Promo',        type:'product', targeting:'Auto',   bidding:'Dynamic Up',      status:'draft',     startDate:'25 Apr 2026', endDate:'25 May 2026',  budget:180,  spends:0,    revenue:0,    roas:0,    ecpc:0,    orders:0,   ctr:0,   cvr:0    },
+  { id:10, code:'C_ARCH10QRT0H', name:'Q1 Archive - Electronics',   type:'product', targeting:'Manual', bidding:'Fixed CPC',       status:'archived',  startDate:'1 Jan 2026',  endDate:'31 Mar 2026',  budget:700,  spends:698,  revenue:5460, roas:7.82, ecpc:1.41, orders:412, ctr:1.8, cvr:10.1 },
+  { id:11, code:'C_ARCH11BRD1I', name:'Brand Winter Archive',       type:'brand',   targeting:'Auto',   bidding:'Dynamic Up',      status:'archived',  startDate:'1 Dec 2025',  endDate:'28 Feb 2026',  budget:400,  spends:395,  revenue:2980, roas:7.54, ecpc:1.52, orders:220, ctr:1.6, cvr:9.4  },
+  { id:12, code:'C_COMP12BLK2J', name:'Black Friday Campaign',      type:'product', targeting:'Auto',   bidding:'Dynamic Up-Down', status:'completed', startDate:'25 Nov 2025', endDate:'30 Nov 2025',  budget:1200, spends:1198, revenue:9840, roas:8.21, ecpc:1.24, orders:720, ctr:2.6, cvr:13.8 },
+  { id:13, code:'C_COMP13NYR3K', name:'New Year Launch',            type:'display', targeting:'Manual', bidding:'Fixed CPC',       status:'completed', startDate:'1 Jan 2026',  endDate:'15 Jan 2026',  budget:350,  spends:348,  revenue:2240, roas:6.44, ecpc:1.58, orders:168, ctr:1.4, cvr:8.7  },
+  { id:14, code:'C_ALWY14AUTO4L', name:'Always-On Product Boost',   type:'product', targeting:'Auto',   bidding:'Dynamic Up',      status:'active',    startDate:'1 Jan 2026',  endDate:null,           budget:800,  spends:524,  revenue:4180, roas:7.98, ecpc:1.29, orders:308, ctr:2.2, cvr:11.8 }
+];
+
+var selectedIds = new Set();
+var pendingAction = null;
+var sortCol = null;
+var sortDir = 1;
+
+function statusBadge(s) {
+  var labels = { active:'Active', paused:'Paused', draft:'Draft', exhausted:'Exhausted', archived:'Archived', completed:'Completed' };
+  var title = s==='exhausted' ? ' title="Budget exhausted"' : '';
+  return '<span class="sbadge '+s+'"'+title+'><span class="sd"></span>'+(labels[s]||s)+'</span>';
+}
+
+function d(val, isDraft, formatted) {
+  return isDraft ? '<td class="muted r">—</td>' : '<td class="r">'+formatted+'</td>';
+}
+
+function renderRow(c) {
+  var isDraft = c.status === 'draft';
+  var isInactive = isDraft;
+  var isSel = selectedIds.has(c.id);
+  var isOn = c.status === 'active';
+  var isPaused = c.status === 'paused';
+  var canToggle = isOn || isPaused;
+  var rowCls = [(isSel?'sel':''), (isDraft?'is-draft':'')].filter(Boolean).join(' ');
+  var dateStr = c.startDate + ' – ' + (c.endDate ? c.endDate : '<span style="color:var(--text-3);font-style:italic">No end date</span>');
+
+  var canEdit = isOn || c.status === 'exhausted';
+  var editIcon = '<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width:11px;height:11px"><path d="M9.5 2.5l2 2L4 12H2v-2L9.5 2.5z"/></svg>';
+
+  var pauseIcon = '';
+  var activateIcon = '';
+
+  var budgetCell = '<td style="white-space:nowrap">'
+    +c.budget.toLocaleString()
+    +(canEdit ? ' <button class="row-edit-btn" onclick="openEditModal(event,\'budget\','+c.id+')" title="Edit budget">'+editIcon+'</button>' : '')
+    +'</td>';
+
+  var targetCell = '<td><div class="tb-cell">'
+    +'<div style="display:flex;align-items:center;gap:4px;">'
+      +'<span class="tb-targeting">'+c.targeting+'</span>'
+      +(canEdit ? '<button class="row-edit-btn" onclick="openEditModal(event,\'targeting\','+c.id+')" title="Edit targeting & bidding">'+editIcon+'</button>' : '')
+    +'</div>'
+    +'<span class="tb-bidding">'+c.bidding+'</span>'
+    +'</div></td>';
+
+  var actionsCell = '<td style="text-align:center;vertical-align:middle">'
+    +'<div class="row-actions">'
+      +(canToggle
+        ? (isOn
+            ? '<button class="row-act-btn" onclick="requestToggle(event,'+c.id+')">Pause</button>'
+            : '<button class="row-act-btn" onclick="requestToggle(event,'+c.id+')">Activate</button>')
+        : '')
+      +'<div class="act-wrap">'
+        +'<button class="act-more-btn" onclick="toggleActMenu(event,'+c.id+')">More...</button>'
+        +'<div class="act-menu" id="menu-'+c.id+'">'
+          +'<div class="act-menu-item" onclick="closeMenus()">Edit</div>'
+          +'<div class="act-menu-item" onclick="closeMenus()">Duplicate</div>'
+          +'<div class="act-sep"></div>'
+          +'<div class="act-menu-item red" onclick="closeMenus()">Archive</div>'
+        +'</div>'
+      +'</div>'
+    +'</div>'
+    +'</td>';
+
+  return '<tr class="'+rowCls+'" data-id="'+c.id+'">'
+    +'<td style="text-align:center"><input type="checkbox" class="tbl-check row-check" data-id="'+c.id+'" '+(isSel?'checked':'')+' onchange="toggleRow(this)"></td>'
+    +'<td>'
+      +'<a href="#campaign/'+c.id+'" class="camp-name" onclick="openCampaignDetail(event,'+c.id+')" title="'+c.name+'">'+c.name+'<span class="camp-name-arrow">&#8594;</span></a>'
+      +'<div class="camp-dates">'+dateStr+'</div>'
+      +'<div class="camp-tags">'
+        +'<span class="tag tag-'+c.type+'">'+c.type.charAt(0).toUpperCase()+c.type.slice(1)+'</span>'
+        +'<span class="tag tag-code">'+c.code+'</span>'
+      +'</div>'
+    +'</td>'
+    +'<td>'+statusBadge(c.status)+'</td>'
+    +targetCell
+    +budgetCell
+    +d(c.spends,isInactive,c.spends.toLocaleString())
+    +d(c.revenue,isInactive,c.revenue.toLocaleString())
+    +d(c.roas,isInactive,c.roas.toFixed(2))
+    +d(c.ecpc,isInactive,c.ecpc.toFixed(2))
+    +d(c.orders,isInactive,c.orders.toLocaleString())
+    +d(c.ctr,isInactive,c.ctr.toFixed(1)+'%')
+    +d(c.cvr,isInactive,c.cvr.toFixed(1)+'%')
+    +actionsCell
+    +'</tr>';
+}
+
+function getSortVal(c, col) {
+  if (col==='name')      return c.name.toLowerCase();
+  if (col==='status')    return c.status;
+  if (col==='targeting') return c.targeting+c.bidding;
+  if (col==='budget')    return c.budget;
+  if (col==='spends')    return c.spends;
+  if (col==='revenue')   return c.revenue;
+  if (col==='roas')      return c.roas;
+  if (col==='ecpc')      return c.ecpc;
+  if (col==='orders')    return c.orders;
+  if (col==='ctr')       return c.ctr;
+  if (col==='cvr')       return c.cvr;
+  return 0;
+}
+
+function sortTable(col) {
+  if (sortCol === col) {
+    if (sortDir === 1) {
+      sortDir = -1;
+    } else {
+      // third click: reset to default
+      sortCol = null;
+      sortDir = 1;
+      document.querySelectorAll('.tbl th').forEach(function(th) {
+        th.classList.remove('sort-asc','sort-desc','active-sort');
+      });
+      filterTable();
+      return;
+    }
+  } else {
+    sortCol = col;
+    sortDir = 1;
+  }
+  document.querySelectorAll('.tbl th').forEach(function(th) {
+    th.classList.remove('sort-asc','sort-desc','active-sort');
+    var oc = th.getAttribute('onclick');
+    if (oc && oc.indexOf("'"+col+"'") > -1) {
+      th.classList.add(sortDir===1?'sort-asc':'sort-desc','active-sort');
+    }
+  });
+  filterTable();
+}
+
+function filterTable() {
+  var q = document.getElementById('campSearch').value.toLowerCase();
+  var statuses = Array.from(document.querySelectorAll('[data-g="status"]:checked')).map(function(c){ return c.value.toLowerCase(); });
+  var adtypes  = Array.from(document.querySelectorAll('[data-g="adtype"]:checked')).map(function(c){ return c.value.toLowerCase(); });
+  var data = campaigns.slice().filter(function(c) {
+    if (q && !c.name.toLowerCase().includes(q)) return false;
+    if (statuses.length && !statuses.includes(c.status)) return false;
+    if (adtypes.length  && !adtypes.includes(c.type))   return false;
+    return true;
+  });
+  if (sortCol) {
+    data.sort(function(a,b) {
+      var av = getSortVal(a,sortCol), bv = getSortVal(b,sortCol);
+      return av < bv ? -sortDir : av > bv ? sortDir : 0;
+    });
+  }
+  document.getElementById('campBody').innerHTML = data.map(renderRow).join('');
+  var hasFilters = statuses.length || adtypes.length || q;
+  var label = data.length+' campaign'+(data.length!==1?'s':'');
+  if (hasFilters) label += ' <span style="color:var(--text-3);font-weight:400">(filtered)</span>';
+  document.getElementById('campCount').innerHTML = label;
+}
+
+function toggleRow(cb) {
+  var id = parseInt(cb.getAttribute('data-id'));
+  if (cb.checked) selectedIds.add(id); else selectedIds.delete(id);
+  cb.closest('tr').classList.toggle('sel', cb.checked);
+  updateBulkBar();
+}
+
+function toggleAll(cb) {
+  document.querySelectorAll('.row-check').forEach(function(c) {
+    var id = parseInt(c.getAttribute('data-id'));
+    c.checked = cb.checked;
+    if (cb.checked) selectedIds.add(id); else selectedIds.delete(id);
+    c.closest('tr').classList.toggle('sel', cb.checked);
+  });
+  updateBulkBar();
+}
+
+function updateBulkBar() {
+  var n = selectedIds.size;
+  document.getElementById('bulkBar').classList.toggle('show', n>0);
+  document.getElementById('bulkLabel').textContent = n+' selected';
+  if (!n) { document.getElementById('checkAll').checked = false; return; }
+
+  var activeCount = 0, pausedCount = 0;
+  selectedIds.forEach(function(id) {
+    var c = campaigns.find(function(x){ return x.id===id; });
+    if (c) {
+      if (c.status==='active') activeCount++;
+      else if (c.status==='paused') pausedCount++;
+    }
+  });
+
+  var pauseBtn = document.getElementById('bulkPauseBtn');
+  var activateBtn = document.getElementById('bulkActivateBtn');
+
+  if (activeCount > 0) {
+    pauseBtn.style.display = '';
+    pauseBtn.textContent = 'Pause'+(activeCount < n ? ' ('+activeCount+')' : '');
+  } else {
+    pauseBtn.style.display = 'none';
+  }
+
+  if (pausedCount > 0) {
+    activateBtn.style.display = '';
+    activateBtn.textContent = 'Activate'+(pausedCount < n ? ' ('+pausedCount+')' : '');
+  } else {
+    activateBtn.style.display = 'none';
+  }
+}
+
+function clearSelection() {
+  selectedIds.clear();
+  document.querySelectorAll('.row-check').forEach(function(c){ c.checked=false; c.closest('tr').classList.remove('sel'); });
+  document.getElementById('checkAll').checked = false;
+  updateBulkBar();
+}
+
+function bulkAction(action) {
+  var n = selectedIds.size;
+  showConfirm(action.charAt(0).toUpperCase()+action.slice(1)+' '+n+' campaign'+(n>1?'s':'')+'?', function(){ clearSelection(); });
+}
+
+function toggleActMenu(e, id) {
+  e.stopPropagation();
+  var menu = document.getElementById('menu-'+id);
+  var isOpen = menu.classList.contains('open');
+  closeMenus();
+  if (!isOpen) menu.classList.add('open');
+}
+
+function closeMenus() {
+  document.querySelectorAll('.act-menu.open').forEach(function(m){ m.classList.remove('open'); });
+}
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.act-wrap')) closeMenus();
+});
+
+function requestToggle(e, id) {
+  e.stopPropagation();
+  closeMenus();
+  var c = campaigns.find(function(x){ return x.id===id; });
+  var action = c.status==='active' ? 'Pause' : 'Activate';
+  var name = c.name.length>32 ? c.name.substring(0,32)+'…' : c.name;
+  showConfirm(action+' "'+name+'"?', function() {
+    c.status = c.status==='active' ? 'paused' : 'active';
+    filterTable();
+  });
+}
+
+function showConfirm(msg, onYes) {
+  pendingAction = onYes;
+  var parts = msg.match(/^(\w+) "(.+)"\?$/);
+  var action = parts ? parts[1] : '';
+  var name   = parts ? parts[2] : '';
+  document.getElementById('confirmTitle').textContent = action ? action+' campaign' : 'Confirm action';
+  document.getElementById('confirmMsg').textContent   = name
+    ? 'This will '+(action==='Pause'?'pause':'activate')+' "'+name+'". You can reverse this at any time.'
+    : msg;
+  var icon = document.querySelector('.confirm-modal-icon');
+  if (action==='Pause') {
+    icon.style.background='#FFF8E6'; icon.querySelector('svg').style.stroke='#B07700';
+  } else if (action==='Activate') {
+    icon.style.background='var(--green-bg)'; icon.querySelector('svg').style.stroke='var(--green)';
+  } else {
+    icon.style.background='var(--blue-bg)'; icon.querySelector('svg').style.stroke='var(--blue)';
+  }
+  document.getElementById('confirmToast').classList.add('show');
+}
+
+function hideConfirm() {
+  pendingAction = null;
+  document.getElementById('confirmToast').classList.remove('show');
+}
+
+document.getElementById('confirmToast').addEventListener('click', function(e){
+  if (e.target === this) hideConfirm();
+});
+
+document.getElementById('confirmYes').onclick = function() {
+  if (pendingAction) pendingAction();
+  hideConfirm();
+};
+
+filterTable();
+
+// ── DETAIL VIEW ────────────────────────────────────────────────────────────
+
+var detailCampaign = null;
+var dhChartInit = false;
+var dhChart = null;
+var dhActiveMetrics = ['revenue','spends'];
+var DH_MAX = 2;
+
+var dhDatasets = {
+  revenue:{ label:'Revenue',   data:[520,680,890,760,1100,940,880,760,680,440,320,80], color:'#2D8653', yAxis:'y'  },
+  spends: { label:'Ad Spends', data:[65,85,112,95,138,118,110,95,85,55,40,10],         color:'#1A6FE8', yAxis:'y'  },
+  roas:   { label:'ROAS',      data:[8.0,8.0,7.9,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0,8.0], color:'#F5A623', yAxis:'y2' },
+  orders: { label:'Ad Orders', data:[38,50,65,56,80,69,64,56,50,32,24,6],              color:'#9B59B6', yAxis:'y'  },
+  ctr:    { label:'CTR %',     data:[2.1,2.2,2.3,2.2,2.4,2.3,2.3,2.2,2.3,2.3,2.2,2.1], color:'#E67E22', yAxis:'y2' },
+  ecpc:   { label:'eCPC',      data:[1.3,1.3,1.28,1.3,1.27,1.28,1.28,1.3,1.29,1.28,1.29,1.3], color:'#2980B9', yAxis:'y2' },
+  cvr:    { label:'CVR %',     data:[11.8,12.0,12.1,12.0,12.2,12.1,12.1,12.0,12.1,12.1,12.0,11.9], color:'#E74C3C', yAxis:'y2' },
+  clicks: { label:'Clicks',    data:[840,1060,1400,1200,1740,1480,1380,1200,1060,680,500,130],       color:'#1ABC9C', yAxis:'y'  },
+  views:  { label:'Views',     data:[40000,51000,67000,57000,83000,71000,66000,57000,51000,33000,24000,6000], color:'#7F8C8D', yAxis:'y' },
+  atc:    { label:'ATC',       data:[210,265,350,300,435,370,345,300,265,170,125,32],                color:'#C0392B', yAxis:'y'  }
+};
+
+var dhChartLabels = ['1 Mar','5 Mar','9 Mar','13 Mar','17 Mar','21 Mar','25 Mar','29 Mar','2 Apr','6 Apr','10 Apr','14 Apr'];
+
+function openCampaignDetail(e, id) {
+  e.preventDefault();
+  var c = campaigns.find(function(x){ return x.id===id; });
+  if (!c) return;
+  detailCampaign = c;
+  dhChartInit = false;
+  if (dhChart) { dhChart.destroy(); dhChart = null; }
+  dhActiveMetrics = ['revenue','spends'];
+  document.querySelectorAll('#dhMetricToggles .mtoggle').forEach(function(b){
+    b.classList.toggle('active', dhActiveMetrics.indexOf(b.getAttribute('data-dmetric')) > -1);
+  });
+  document.getElementById('dhTert').classList.remove('open');
+  document.getElementById('dhSmBtn').classList.remove('open');
+  document.getElementById('dhSmLabel').textContent = 'Show other metrics';
+  document.getElementById('dhTrendsPanel').classList.remove('open');
+  document.getElementById('dhTrendsToggleBtn').classList.remove('open');
+  document.getElementById('dhTrendsLbl').textContent = 'Show Trends';
+
+  dhRender(c);
+  document.getElementById('dhProdSearch').value = '';
+  dhFilterProds();
+  document.getElementById('overviewView').classList.add('hidden');
+  document.getElementById('detailView').classList.add('active');
+  document.querySelector('.page').scrollTop = 0;
+}
+
+function dhRender(c) {
+  // breadcrumb + name
+  document.getElementById('detailBcName').textContent = c.name;
+  document.getElementById('dhNameText').textContent = c.name;
+  document.getElementById('dhNameInput').value = c.name;
+
+  // status badge
+  var badge = document.getElementById('dhStatusBadge');
+  badge.className = 'sbadge ' + c.status;
+  document.getElementById('dhStatusText').textContent = ({active:'Active',paused:'Paused',draft:'Draft',exhausted:'Exhausted',archived:'Archived',completed:'Completed'})[c.status] || c.status;
+
+  // toggle button
+  dhUpdateToggleBtn();
+
+  var isDraft = c.status === 'draft';
+  var canEdit = c.status === 'active' || c.status === 'exhausted';
+
+  // type tag + code in name row
+  var typeLabel = ({product:'Product',brand:'Brand',display:'Display'})[c.type] || c.type;
+  var typeTag = document.getElementById('dhTypeTag');
+  typeTag.className = 'tag tag-' + c.type;
+  typeTag.textContent = typeLabel;
+  document.getElementById('dhCodeTag').textContent = c.code;
+
+  var pencilSvg = '<svg viewBox="0 0 10 10"><path d="M6.5 1.5l2 2L2.5 9.5H.5v-2L6.5 1.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function editBtn(type, title) {
+    if (!canEdit) return '';
+    return '<button class="dh-sg-edit" onclick="openEditModal(event,\'' + type + '\',' + c.id + ')" title="' + title + '">' + pencilSvg + '</button>';
+  }
+
+  // duration
+  var endVal = c.endDate ? c.endDate : '<span class="dh-date-no-end">No end date</span>';
+  var endEditBtn = canEdit
+    ? '<button class="dh-sg-edit" onclick="dhOpenEditEndDate(event)" title="Edit end date">' + pencilSvg + '</button>'
+    : '';
+  var durationCell =
+    '<div class="dh-sg">'
+    + '<div class="dh-sg-lbl">Duration</div>'
+    + '<div class="dh-sg-val" style="flex-direction:column;align-items:flex-start;gap:3px;">'
+    +   '<span style="font-size:12px;color:var(--text-2)">Start: <strong style="color:var(--text-1)">' + c.startDate + '</strong></span>'
+    +   '<span style="font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:4px;">End: <strong style="color:var(--text-1)">' + endVal + '</strong>' + endEditBtn + '</span>'
+    + '</div>'
+    + '</div>';
+
+  // targeting & bid
+  var targetCell =
+    '<div class="dh-sg">'
+    + '<div class="dh-sg-lbl">Targeting & Bid</div>'
+    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + c.targeting + editBtn('targeting', 'Edit targeting & bidding') + '</div>'
+    + '<div class="dh-sg-sub">' + c.bidding + '</div>'
+    + '</div>';
+
+  // budget — no spends, just the budget value + edit
+  var budgetCell =
+    '<div class="dh-sg">'
+    + '<div class="dh-sg-lbl">Daily Budget</div>'
+    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + (isDraft ? '\u2014' : '\u062f.\u0625 ' + c.budget.toLocaleString()) + editBtn('budget', 'Edit budget') + '</div>'
+    + '<div class="dh-sg-sub">' + (isDraft ? 'Not started' : 'per day') + '</div>'
+    + '</div>';
+
+  // top of search bid %
+  var tosCell =
+    '<div class="dh-sg">'
+    + '<div class="dh-sg-lbl">Top of Search Bid</div>'
+    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + (isDraft ? '\u2014' : '20%') + editBtn('tos', 'Edit top of search bid') + '</div>'
+    + '<div class="dh-sg-sub">bid multiplier</div>'
+    + '</div>';
+
+  // negative targeting
+  var negExact = 8, negPhrase = 5;
+  var negCell =
+    '<div class="dh-sg">'
+    + '<div class="dh-sg-lbl">Negative Targeting</div>'
+    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">'
+    +   '<span style="font-size:12px;color:var(--text-2);">'
+    +     '<strong style="color:var(--text-1);">' + negExact + '</strong> exact &nbsp;'
+    +     '<strong style="color:var(--text-1);">' + negPhrase + '</strong> phrase'
+    +   '</span>'
+    +   editBtn('negative', 'Edit negative targeting')
+    + '</div>'
+    + '<div class="dh-sg-sub">Exclude irrelevant keywords</div>'
+    + '</div>';
+
+  document.getElementById('dhSettings').innerHTML = durationCell + targetCell + budgetCell + tosCell + negCell;
+
+  // metrics row
+  function mc(lbl, val, tip, last) {
+    return '<div class="mc"' + (last ? ' style="border-right:none"' : '') + '>'
+      + '<div class="mc-lbl">' + lbl + ' <button class="ibt" data-tip="' + tip + '">i</button></div>'
+      + '<div class="mc-val">' + (isDraft ? '\u2014' : val) + '</div>'
+      + '</div>';
+  }
+  document.getElementById('dhMetricsRow').innerHTML =
+    mc('Ad Spends', '\u062f.\u0625 ' + c.spends.toLocaleString(), 'Total ad spend in selected period', false)
+    + mc('Revenue', '\u062f.\u0625 ' + c.revenue.toLocaleString(), 'Total attributed revenue from ads', false)
+    + mc('ROAS', c.roas.toFixed(2), 'Revenue divided by ad spends', false)
+    + mc('eCPC', '\u062f.\u0625 ' + c.ecpc.toFixed(2), 'Effective cost per click', false)
+    + mc('Ad Orders', c.orders.toLocaleString(), 'Orders attributed to this campaign', false)
+    + mc('CTR', c.ctr.toFixed(1) + '%', 'Clicks divided by impressions', false)
+    + mc('CVR', c.cvr.toFixed(1) + '%', 'Orders divided by clicks', true);
+
+  // tert row
+  document.getElementById('dhTertGrid').innerHTML =
+    '<div class="tm-cell"><div class="tm-lbl">Clicks <button class="ibt" data-tip="Total ad clicks">i</button></div><div class="tm-val">' + (isDraft ? '\u2014' : '5,000') + '</div></div>'
+    + '<div class="tm-cell"><div class="tm-lbl">Views <button class="ibt" data-tip="Total ad impressions">i</button></div><div class="tm-val">' + (isDraft ? '\u2014' : '217K') + '</div></div>'
+    + '<div class="tm-cell" style="border-right:none"><div class="tm-lbl">ATC <button class="ibt" data-tip="Add to cart events">i</button></div><div class="tm-val">' + (isDraft ? '\u2014' : '940') + '</div></div>';
+}
+
+function dhUpdateToggleBtn() {
+  var c = detailCampaign;
+  var btn = document.getElementById('dhToggleBtn');
+  var icon = document.getElementById('dhToggleIcon');
+  var lbl = document.getElementById('dhToggleLabel');
+  var canToggle = c.status === 'active' || c.status === 'paused';
+  btn.style.display = canToggle ? '' : 'none';
+  if (c.status === 'active') {
+    lbl.textContent = 'Pause';
+    icon.innerHTML = '<rect x="1.5" y="1" width="3.5" height="10" rx=".5" fill="#fff" stroke="none"/><rect x="7" y="1" width="3.5" height="10" rx=".5" fill="#fff" stroke="none"/>';
+  } else {
+    lbl.textContent = 'Activate';
+    icon.innerHTML = '<polygon points="1.5,1 1.5,11 10.5,6" fill="#fff" stroke="none"/>';
+  }
+}
+
+function dhRequestToggle() {
+  dhCloseMoreDd();
+  var c = detailCampaign;
+  var action = c.status === 'active' ? 'Pause' : 'Activate';
+  var name = c.name.length > 32 ? c.name.substring(0,32) + '\u2026' : c.name;
+  showConfirm(action + ' "' + name + '"?', function() {
+    c.status = c.status === 'active' ? 'paused' : 'active';
+    var badge = document.getElementById('dhStatusBadge');
+    badge.className = 'sbadge ' + c.status;
+    document.getElementById('dhStatusText').textContent = ({active:'Active',paused:'Paused'})[c.status];
+    dhUpdateToggleBtn();
+    filterTable();
+  });
+}
+
+function dhStartEdit() {
+  document.getElementById('dhNameDisplay').style.display = 'none';
+  var inp = document.getElementById('dhNameInput');
+  inp.style.display = 'inline-block';
+  inp.focus(); inp.select();
+}
+function dhFinishEdit() {
+  var inp = document.getElementById('dhNameInput');
+  var val = inp.value.trim();
+  if (val && detailCampaign) {
+    detailCampaign.name = val;
+    document.getElementById('dhNameText').textContent = val;
+    document.getElementById('detailBcName').textContent = val;
+    filterTable();
+  } else {
+    inp.value = detailCampaign ? detailCampaign.name : '';
+  }
+  inp.style.display = 'none';
+  document.getElementById('dhNameDisplay').style.display = 'inline-flex';
+}
+function dhNameKey(e) {
+  if (e.key === 'Enter') e.target.blur();
+  if (e.key === 'Escape') {
+    document.getElementById('dhNameInput').value = detailCampaign ? detailCampaign.name : '';
+    document.getElementById('dhNameInput').blur();
+  }
+}
+
+function dhToggleMoreDd() {
+  document.getElementById('dhMoreDd').classList.toggle('open');
+}
+function dhCloseMoreDd() {
+  document.getElementById('dhMoreDd').classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#dhMoreBtn') && !e.target.closest('#dhMoreDd')) dhCloseMoreDd();
+});
+
+function dhOpenEditBudget() {
+  dhCloseMoreDd();
+  if (!detailCampaign) return;
+  var modal = document.getElementById('editModal');
+  var title = document.getElementById('editModalTitle');
+  var body  = document.getElementById('editModalBody');
+  title.textContent = 'Edit budget';
+  body.innerHTML = '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">' + detailCampaign.name + '</strong></div>'
+    + '<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Daily budget (\u062f.\u0625)</label>'
+    + '<input type="number" value="' + detailCampaign.budget + '" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:14px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
+    + '<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Current: \u062f.\u0625 ' + detailCampaign.budget.toLocaleString() + ' / day</div>';
+  modal.style.display = 'flex';
+}
+
+function dhOpenEditEndDate(e) {
+  e.stopPropagation();
+  if (!detailCampaign) return;
+  var c = detailCampaign;
+  var modal = document.getElementById('editModal');
+  document.getElementById('editModalTitle').textContent = 'Edit end date';
+  document.getElementById('editModalBody').innerHTML =
+    '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">' + c.name + '</strong></div>'
+    + '<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">End date</label>'
+    + '<input type="date" value="" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:13px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
+    + '<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Leave blank to remove end date (run continuously)</div>';
+  modal.style.display = 'flex';
+}
+
+function dhOpenEditTargeting() {
+  dhCloseMoreDd();
+  if (!detailCampaign) return;
+  var c = detailCampaign;
+  var modal = document.getElementById('editModal');
+  document.getElementById('editModalTitle').textContent = 'Edit targeting & bidding';
+  document.getElementById('editModalBody').innerHTML =
+    '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">' + c.name + '</strong></div>'
+    + '<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Targeting type</label>'
+    + '<select style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 10px;font-size:13px;font-family:\'DM Sans\',sans-serif;margin-bottom:14px;outline:none;box-sizing:border-box;">'
+      + '<option' + (c.targeting==='Auto'?' selected':'') + '>Auto</option>'
+      + '<option' + (c.targeting==='Manual'?' selected':'') + '>Manual</option>'
+    + '</select>'
+    + '<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Bidding strategy</label>'
+    + '<select style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 10px;font-size:13px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;">'
+      + '<option' + (c.bidding==='Fixed CPC'?' selected':'') + '>Fixed CPC</option>'
+      + '<option' + (c.bidding==='Dynamic Up'?' selected':'') + '>Dynamic Up</option>'
+      + '<option' + (c.bidding==='Dynamic Up-Down'?' selected':'') + '>Dynamic Up-Down</option>'
+    + '</select>';
+  modal.style.display = 'flex';
+}
+
+function dhTdd(id, btnId) {
+  var isOpen = document.getElementById(id).classList.contains('open');
+  document.querySelectorAll('.dd,.date-dd').forEach(function(d){ d.classList.remove('open'); });
+  document.querySelectorAll('.fbtn').forEach(function(b){ b.classList.remove('open'); });
+  if (!isOpen) {
+    document.getElementById(id).classList.add('open');
+    document.getElementById(btnId).classList.add('open');
+  }
+}
+function dhSd(el, label) {
+  document.querySelectorAll('#dhddd .dp').forEach(function(p){ p.classList.remove('sel'); });
+  el.classList.add('sel');
+  document.getElementById('dhdlabel').textContent = label;
+  document.getElementById('dhddd').classList.remove('open');
+  document.getElementById('dhdb').classList.remove('open');
+  var cl = document.getElementById('dhChartDateLabel');
+  if (cl) cl.textContent = label;
+}
+
+function dhToggleTert() {
+  var t = document.getElementById('dhTert');
+  var b = document.getElementById('dhSmBtn');
+  var open = t.classList.toggle('open');
+  b.classList.toggle('open', open);
+  document.getElementById('dhSmLabel').textContent = open ? 'Hide other metrics' : 'Show other metrics';
+}
+
+function dhToggleTrends() {
+  var panel = document.getElementById('dhTrendsPanel');
+  var btn   = document.getElementById('dhTrendsToggleBtn');
+  var lbl   = document.getElementById('dhTrendsLbl');
+  var open  = panel.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  lbl.textContent = open ? 'Hide Trends' : 'Show Trends';
+  if (open && !dhChartInit) {
+    dhChartInit = true;
+    setTimeout(dhInitChart, 50);
+  }
+}
+
+function dhBuildDatasets() {
+  return dhActiveMetrics.map(function(key) {
+    var d = dhDatasets[key];
+    return { label:d.label, data:d.data, borderColor:d.color, backgroundColor:'transparent', borderWidth:2, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:d.color, tension:0.4, yAxisID:d.yAxis };
+  });
+}
+
+function dhIsRatio(k) { return k==='roas'||k==='ctr'||k==='cvr'||k==='ecpc'; }
+
+function dhInitChart() {
+  var ctx = document.getElementById('dhPerfChart').getContext('2d');
+  dhChart = new Chart(ctx, {
+    type:'line',
+    data:{ labels:dhChartLabels, datasets:dhBuildDatasets() },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction:{ mode:'index', intersect:false },
+      plugins:{
+        legend:{ display:false },
+        tooltip:{
+          backgroundColor:'#1A1A1A', titleColor:'#9A9A9A', bodyColor:'#ffffff', padding:10,
+          titleFont:{ family:'DM Sans', size:11 }, bodyFont:{ family:'DM Sans', size:12, weight:'600' },
+          callbacks:{ label:function(ctx){
+            var k=dhActiveMetrics[ctx.datasetIndex]; var v=ctx.parsed.y;
+            if(k==='roas') return ' ROAS: '+v.toFixed(2);
+            if(k==='ecpc') return ' eCPC: \u062f.\u0625 '+v.toFixed(2);
+            if(k==='ctr') return ' CTR: '+v.toFixed(1)+'%';
+            if(k==='cvr') return ' CVR: '+v.toFixed(1)+'%';
+            if(k==='orders') return ' Ad Orders: '+Math.round(v);
+            if(k==='revenue') return ' Revenue: \u062f.\u0625 '+Math.round(v).toLocaleString();
+            if(k==='spends') return ' Ad Spends: \u062f.\u0625 '+Math.round(v).toLocaleString();
+            if(k==='clicks') return ' Clicks: '+Math.round(v).toLocaleString();
+            if(k==='views') return ' Views: '+Math.round(v).toLocaleString();
+            if(k==='atc') return ' ATC: '+Math.round(v).toLocaleString();
+            return ' '+v;
+          }}
+        }
+      },
+      scales:{
+        x:{ grid:{color:'#F0F0F0',drawBorder:false}, ticks:{color:'#9A9A9A',font:{family:'DM Sans',size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8}, border:{display:false} },
+        y:{ position:'left', grid:{color:'#F0F0F0',drawBorder:false}, ticks:{ color:'#9A9A9A', font:{family:'DM Sans',size:10}, maxTicksLimit:6, callback:function(v){ var n=Math.round(v); return n>=1000?'\u062f.\u0625 '+(n/1000).toFixed(0)+'K':'\u062f.\u0625 '+n; } }, border:{display:false} },
+        y2:{ position:'right', display:false, grid:{display:false}, ticks:{color:'#9A9A9A',font:{family:'DM Sans',size:10},maxTicksLimit:6,callback:function(v){ return parseFloat(v.toFixed(2))+''; }}, border:{display:false} }
+      }
+    }
+  });
+}
+
+function dhToggleMetric(btn) {
+  var metric = btn.getAttribute('data-dmetric');
+  var isActive = btn.classList.contains('active');
+  if (isActive) {
+    if (dhActiveMetrics.length <= 1) return;
+    dhActiveMetrics = dhActiveMetrics.filter(function(m){ return m !== metric; });
+    btn.classList.remove('active');
+  } else {
+    if (dhActiveMetrics.length >= DH_MAX) {
+      var first = dhActiveMetrics.shift();
+      document.querySelector('[data-dmetric="'+first+'"]').classList.remove('active');
+    }
+    dhActiveMetrics.push(metric);
+    btn.classList.add('active');
+  }
+  dhChart.data.datasets = dhBuildDatasets();
+  dhChart.options.scales.y2.display = dhActiveMetrics.some(dhIsRatio);
+  dhChart.update('active');
+}
+
+function closeDetail() {
+  document.getElementById('detailView').classList.remove('active');
+  document.getElementById('overviewView').classList.remove('hidden');
+  document.querySelector('.page').scrollTop = 0;
+}
+
+function openEditModal(e, type, id) {
+  e.stopPropagation();
+  var c = campaigns.find(function(x){ return x.id===id; });
+  var modal = document.getElementById('editModal');
+  var title = document.getElementById('editModalTitle');
+  var body  = document.getElementById('editModalBody');
+  if (type === 'budget') {
+    title.textContent = 'Edit budget';
+    body.innerHTML = '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">'+c.name+'</strong></div>'
+      +'<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Daily budget (د.إ)</label>'
+      +'<input type="number" value="'+c.budget+'" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:14px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
+      +'<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Current: د.إ '+c.budget.toLocaleString()+' / day</div>';
+  } else if (type === 'negative') {
+    title.textContent = 'Edit negative targeting';
+    body.innerHTML = '<div style="margin-bottom:6px;font-size:12px;color:var(--text-3)">Exclude specific keywords to prevent your ads from appearing in irrelevant searches.</div>'
+      + '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">'+c.name+'</strong></div>'
+      + '<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Exact match keywords</label>'
+      + '<textarea placeholder="One keyword per line" rows="3" style="width:100%;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:8px 12px;font-size:13px;font-family:\'DM Sans\',sans-serif;outline:none;resize:vertical;box-sizing:border-box;color:var(--text-1);">cheap shoes\nbest price shoes\nfree shoes</textarea>'
+      + '<label style="display:block;margin:12px 0 6px;font-size:12px;font-weight:600;color:var(--text-2)">Phrase match keywords</label>'
+      + '<textarea placeholder="One keyword per line" rows="3" style="width:100%;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:8px 12px;font-size:13px;font-family:\'DM Sans\',sans-serif;outline:none;resize:vertical;box-sizing:border-box;color:var(--text-1);">cheap\ndiscount\nwholesale</textarea>';
+  } else if (type === 'tos') {
+    title.textContent = 'Edit top of search bid';
+    body.innerHTML = '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">'+c.name+'</strong></div>'
+      +'<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Top of search bid multiplier (%)</label>'
+      +'<input type="number" value="20" min="0" max="900" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:14px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
+      +'<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Increase bids for ads appearing at top of search results. 0% = no adjustment.</div>';
+  } else {
+    body.innerHTML = '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">'+c.name+'</strong></div>'
+      +'<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Targeting type</label>'
+      +'<select style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 10px;font-size:13px;font-family:\'DM Sans\',sans-serif;margin-bottom:14px;outline:none;box-sizing:border-box;">'
+        +'<option'+(c.targeting==='Auto'?' selected':'')+'>Auto</option>'
+        +'<option'+(c.targeting==='Manual'?' selected':'')+'>Manual</option>'
+      +'</select>'
+      +'<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Bidding strategy</label>'
+      +'<select style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 10px;font-size:13px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;">'
+        +'<option'+(c.bidding==='Fixed CPC'?' selected':'')+'>Fixed CPC</option>'
+        +'<option'+(c.bidding==='Dynamic Up'?' selected':'')+'>Dynamic Up</option>'
+        +'<option'+(c.bidding==='Dynamic Up-Down'?' selected':'')+'>Dynamic Up-Down</option>'
+      +'</select>';
+  }
+  modal.style.display = 'flex';
+}
+function closeEditModal() {
+  document.getElementById('editModal').style.display = 'none';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeEditModal(); });
+
+// ── DETAIL SECTION 3: ADVERTISED PRODUCTS ────────────────────────────────
+
+var dhProducts = [
+  { id:1, name:'Ramadan Special Gift Set - Premium Collection', sku:'SA-GIFT-2026-001', emoji:'🎁', status:'active',  bid:1.40, spends:128, revenue:1020, roas:7.97, orders:75,  ctr:2.4 },
+  { id:2, name:'Luxury Prayer Rug - Gold Edition',              sku:'SA-PRAY-2024-002', emoji:'🕌', status:'active',  bid:1.25, spends:96,  revenue:765,  roas:7.97, orders:56,  ctr:2.1 },
+  { id:3, name:'Traditional Dates Gift Box - 500g',             sku:'SA-DATE-2026-003', emoji:'🫙', status:'active',  bid:1.10, spends:84,  revenue:670,  roas:7.98, orders:49,  ctr:2.3 },
+  { id:4, name:'Oud Perfume Collection - 3 Piece Set',          sku:'SA-PERF-2026-004', emoji:'🧴', status:'paused',  bid:1.55, spends:210, revenue:1680, roas:8.00, orders:123, ctr:2.8 },
+  { id:5, name:'Islamic Art Wall Decor - Large Canvas',         sku:'SA-DECO-2026-005', emoji:'🖼️', status:'active',  bid:0.95, spends:72,  revenue:572,  roas:7.94, orders:42,  ctr:1.9 },
+  { id:6, name:'Kids Ramadan Advent Calendar',                  sku:'SA-KIDS-2026-006', emoji:'🌙', status:'active',  bid:1.20, spends:50,  revenue:393,  roas:7.86, orders:29,  ctr:2.2 }
+];
+
+function dhRenderProdRow(p) {
+  var badge = p.status === 'active'
+    ? '<span class="sbadge active"><span class="sd"></span>Active</span>'
+    : '<span class="sbadge paused"><span class="sd"></span>Paused</span>';
+  return '<tr>'
+    + '<td><div style="display:flex;align-items:center;gap:10px;min-width:0;">'
+    +   '<div class="prod-img">' + p.emoji + '</div>'
+    +   '<div style="min-width:0;">'
+    +     '<div class="prod-name" title="' + p.name + '">' + p.name + '</div>'
+    +     '<div class="prod-sku">' + p.sku + '</div>'
+    +   '</div>'
+    + '</div></td>'
+    + '<td>' + badge + '</td>'
+    + '<td class="r">' + p.bid.toFixed(2) + '</td>'
+    + '<td class="r">' + p.spends.toLocaleString() + '</td>'
+    + '<td class="r">' + p.revenue.toLocaleString() + '</td>'
+    + '<td class="r">' + p.roas.toFixed(2) + '</td>'
+    + '<td class="r">' + p.orders + '</td>'
+    + '<td class="r">' + p.ctr.toFixed(1) + '%</td>'
+    + '</tr>';
+}
+
+function dhFilterProds() {
+  var q = document.getElementById('dhProdSearch').value.toLowerCase();
+  var data = dhProducts.filter(function(p) {
+    return !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q);
+  });
+  document.getElementById('dhProdBody').innerHTML = data.map(dhRenderProdRow).join('');
+  document.getElementById('dhProdCount').textContent = data.length + ' product' + (data.length !== 1 ? 's' : '');
+}
+
+
+
+</script>
+</body>
+</html>
