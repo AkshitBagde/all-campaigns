@@ -258,25 +258,51 @@ body { font-family:'DM Sans',sans-serif; background:var(--page-bg); color:var(--
 .dh-prog-bar { height:100%; border-radius:20px; }
 
 /* campaign settings grid */
-.dh-settings { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--card-border); }
-.dh-sg { padding:14px 18px 16px; border-right:1px solid var(--card-border); }
+.dh-settings { display:grid; grid-template-columns:repeat(6,1fr); border-top:1px solid var(--card-border); }
+.dh-sg { padding:14px 16px 16px; border-right:1px solid var(--card-border); position:relative; }
 .dh-sg:last-child { border-right:none; }
-.dh-sg-lbl { font-size:10px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.07em; margin-bottom:7px; display:flex; align-items:center; gap:4px; }
-.dh-sg-val { font-size:13px; font-weight:500; color:var(--text-1); display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
-.dh-sg-sub { font-size:11px; color:var(--text-3); margin-top:2px; }
+.dh-sg-lbl { font-size:11px; font-weight:600; color:var(--text-2); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px; padding-right:36px; }
+.dh-sg-val { font-size:14px; font-weight:500; color:var(--text-1); display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.dh-sg-sub { font-size:11px; color:var(--text-3); margin-top:3px; }
+.dh-sg-edit-link { position:absolute; top:13px; right:12px; display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:600; color:var(--blue); background:none; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; padding:0; transition:opacity .12s; opacity:.75; }
+.dh-sg-edit-link:hover { opacity:1; }
+.dh-sg-edit-link svg { width:10px; height:10px; stroke:currentColor; fill:none; stroke-width:1.8; }
 .dh-sg-edit { width:18px; height:18px; border-radius:4px; border:1px solid transparent; background:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; color:var(--text-4); transition:all .12s; flex-shrink:0; padding:0; }
 .dh-sg-edit:hover { background:var(--page-bg); border-color:var(--card-border); color:var(--blue); }
 .dh-sg-edit svg { width:10px; height:10px; stroke:currentColor; fill:none; stroke-width:1.7; }
 .dh-date-no-end { font-size:11px; color:var(--text-3); font-style:italic; }
 
-/* detail section 3 — products table */
-.d-s3-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; gap:10px; margin-top:20px; }
+/* detail section 3 — tabbed section */
+.d-s3-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0; gap:10px; margin-top:20px; }
 .d-s3-left { display:flex; align-items:center; gap:10px; }
 .d-s3-title { font-size:15px; font-weight:600; color:var(--text-1); }
 .d-s3-count { font-size:12px; color:var(--text-3); }
-.prod-img { width:32px; height:32px; border-radius:var(--r-sm); background:var(--page-bg); border:1px solid var(--card-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+.prod-img { width:36px; height:36px; border-radius:var(--r-sm); background:var(--page-bg); border:1px solid var(--card-border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px; overflow:hidden; }
 .prod-name { font-size:12px; font-weight:500; color:var(--text-1); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.prod-sku  { font-size:10px; color:var(--text-4); font-family:monospace; margin-top:1px; }
+.prod-sku  { font-size:10px; color:var(--blue); font-family:monospace; margin-top:1px; cursor:pointer; text-decoration:underline; }
+/* tabs */
+.d-tabs { display:flex; gap:0; border-bottom:1px solid var(--card-border); margin-bottom:0; margin-top:20px; }
+.d-tab { height:36px; padding:0 16px; border:none; background:none; font-size:13px; font-weight:500; font-family:'DM Sans',sans-serif; color:var(--text-3); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all .12s; white-space:nowrap; }
+.d-tab:hover { color:var(--text-1); }
+.d-tab.active { color:var(--blue-dk); border-bottom-color:var(--blue); font-weight:600; }
+.d-tab-panel { display:none; }
+.d-tab-panel.active { display:block; }
+/* tab toolbar */
+.d-tab-toolbar { display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+.d-tab-search { position:relative; }
+.d-tab-search input { width:220px; height:32px; border:1px solid var(--card-border); border-radius:var(--r-sm); padding:0 12px 0 30px; font-size:13px; font-family:'DM Sans',sans-serif; color:var(--text-1); background:var(--card-bg); outline:none; transition:border-color .15s; }
+.d-tab-search input:focus { border-color:var(--blue); }
+.d-tab-search input::placeholder { color:var(--text-4); }
+.d-tab-search svg { position:absolute; left:9px; top:50%; transform:translateY(-50%); width:13px; height:13px; stroke:var(--text-4); fill:none; stroke-width:1.8; pointer-events:none; }
+.d-export-btn { display:flex; align-items:center; gap:5px; height:32px; padding:0 12px; border-radius:var(--r-sm); border:1px solid var(--card-border); background:var(--card-bg); color:var(--text-2); font-size:13px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; transition:all .12s; }
+.d-export-btn:hover { border-color:#C8C8C8; background:#FAFAFA; color:var(--text-1); }
+.d-export-btn svg { width:13px; height:13px; stroke:currentColor; fill:none; stroke-width:1.7; }
+/* inline bid edit */
+.bid-cell { display:flex; align-items:center; gap:5px; }
+.bid-val { font-weight:500; color:var(--text-1); font-size:12px; font-variant-numeric:tabular-nums; }
+.apply-btn { font-size:11px; font-weight:600; color:var(--blue-dk); background:var(--blue-bg); border:1px solid #A0BFEF; cursor:pointer; padding:2px 8px; border-radius:4px; font-family:'DM Sans',sans-serif; white-space:nowrap; }
+.apply-btn:hover { background:#dceefb; }
+.rec-range { font-size:10px; color:var(--text-3); display:block; margin-top:1px; }
 
 /* section 2 — metrics card (reuses .mcard, .mc, .mc-lbl, .mc-val, .tert etc from overview) */
 .d-date-strip { display:flex; align-items:center; gap:6px; padding:12px 20px; border-bottom:1px solid var(--card-border); flex-wrap:wrap; }
@@ -930,36 +956,123 @@ body { font-family:'DM Sans',sans-serif; background:var(--page-bg); color:var(--
         </div>
       </div>
 
-      <!-- ─── SECTION 3: ADVERTISED PRODUCTS ─── -->
-      <div class="d-s3-header">
-        <div class="d-s3-left">
-          <span class="d-s3-title">Advertised products</span>
-          <span class="d-s3-count" id="dhProdCount">6 products</span>
-        </div>
-        <div class="fbar-right">
-          <div class="s3-search" style="position:relative;">
-            <svg style="position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--text-4);fill:none;stroke-width:1.8;pointer-events:none;" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
-            <input type="text" placeholder="Search products" id="dhProdSearch" oninput="dhFilterProds()" style="width:200px;height:32px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px 0 30px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--card-bg);outline:none;">
+      <!-- ─── SECTION 3: TABBED DATA ─── -->
+      <div class="d-tabs">
+        <button class="d-tab active" onclick="dhSwitchTab('products',this)">Products</button>
+        <button class="d-tab" onclick="dhSwitchTab('placements',this)">Placements</button>
+        <button class="d-tab" onclick="dhSwitchTab('targets',this)">Targets</button>
+        <button class="d-tab" onclick="dhSwitchTab('queries',this)">Customer Queries</button>
+      </div>
+
+      <!-- PRODUCTS TAB -->
+      <div class="d-tab-panel active" id="dtp-products">
+        <div class="d-tab-toolbar">
+          <div class="d-tab-search">
+            <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search by SKU name or code" id="dhProdSearch" oninput="dhFilterProds()">
           </div>
+          <button class="d-export-btn"><svg viewBox="0 0 14 14"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke-linecap="round"/></svg>Export Data</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl" style="table-layout:fixed;">
+            <thead><tr>
+              <th style="width:24%">Product</th>
+              <th style="width:70px" class="c">Status</th>
+              <th style="width:78px" class="r">Spends (د.إ)</th>
+              <th style="width:72px" class="r">Revenue (د.إ)</th>
+              <th style="width:58px" class="r">ROAS</th>
+              <th style="width:65px" class="r">Orders</th>
+              <th style="width:58px" class="r">eCPC (د.إ)</th>
+              <th style="width:58px" class="r">CTR</th>
+              <th style="width:65px" class="r">Views</th>
+              <th style="width:65px" class="r">Clicks</th>
+              <th style="width:55px" class="r">ATC</th>
+            </tr></thead>
+            <tbody id="dhProdBody"></tbody>
+          </table>
         </div>
       </div>
 
-      <div class="tbl-wrap">
-        <table class="tbl" id="dhProdTable" style="table-layout:fixed;">
-          <thead>
-            <tr>
-              <th style="width:36%">Product</th>
-              <th style="width:80px">Status</th>
-              <th style="width:80px" class="r">Bid (د.إ)</th>
-              <th style="width:80px" class="r">Spends (د.إ)</th>
+      <!-- PLACEMENTS TAB -->
+      <div class="d-tab-panel" id="dtp-placements">
+        <div class="d-tab-toolbar">
+          <div></div>
+          <button class="d-export-btn"><svg viewBox="0 0 14 14"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke-linecap="round"/></svg>Export Data</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl" style="table-layout:fixed;">
+            <thead><tr>
+              <th style="width:16%">Placement</th>
+              <th style="width:110px">Bid Adjustment</th>
+              <th style="width:78px" class="r">Spends (د.إ)</th>
               <th style="width:80px" class="r">Revenue (د.إ)</th>
-              <th style="width:65px" class="r">ROAS</th>
-              <th style="width:65px" class="r">Orders</th>
+              <th style="width:58px" class="r">ROAS</th>
+              <th style="width:62px" class="r">Orders</th>
+              <th style="width:65px" class="r">Views</th>
+              <th style="width:65px" class="r">Clicks</th>
+              <th style="width:58px" class="r">CTR</th>
+              <th style="width:55px" class="r">ATC</th>
+            </tr></thead>
+            <tbody id="dhPlacBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TARGETS TAB -->
+      <div class="d-tab-panel" id="dtp-targets">
+        <div class="d-tab-toolbar">
+          <div></div>
+          <button class="d-export-btn"><svg viewBox="0 0 14 14"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke-linecap="round"/></svg>Export Data</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl" style="table-layout:fixed;">
+            <thead><tr>
+              <th style="width:18%">Target</th>
+              <th style="width:70px" class="c">Status</th>
+              <th style="width:80px">Bid (د.إ)</th>
+              <th style="width:72px" class="r">eCPC (د.إ)</th>
+              <th style="width:140px">Rec. Bid (د.إ) <button class="ibt" data-tip="Suggested bid range based on auction data" style="vertical-align:middle">i</button></th>
+              <th style="width:78px" class="r">Spends (د.إ)</th>
+              <th style="width:72px" class="r">Revenue (د.إ)</th>
+              <th style="width:55px" class="r">ROAS</th>
+              <th style="width:60px" class="r">Orders</th>
+              <th style="width:65px" class="r">Views</th>
+              <th style="width:65px" class="r">Clicks</th>
               <th style="width:55px" class="r">CTR</th>
-            </tr>
-          </thead>
-          <tbody id="dhProdBody"></tbody>
-        </table>
+              <th style="width:50px" class="r">ATC</th>
+              <th style="width:50px" class="r">SOI <button class="ibt" data-tip="Share of Impressions: % of eligible auctions your ad appeared in" style="vertical-align:middle">i</button></th>
+            </tr></thead>
+            <tbody id="dhTargBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CUSTOMER QUERIES TAB -->
+      <div class="d-tab-panel" id="dtp-queries">
+        <div class="d-tab-toolbar">
+          <div></div>
+          <button class="d-export-btn"><svg viewBox="0 0 14 14"><path d="M7 1v8M4 6l3 3 3-3"/><path d="M1 10v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke-linecap="round"/></svg>Export Data</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl" style="table-layout:fixed;">
+            <thead><tr>
+              <th style="width:20%">Query term</th>
+              <th style="width:14%">Target</th>
+              <th style="width:12%">Match type</th>
+              <th style="width:78px" class="r">Target bid (د.إ)</th>
+              <th style="width:70px" class="r">eCPC (د.إ)</th>
+              <th style="width:78px" class="r">Spends (د.إ)</th>
+              <th style="width:78px" class="r">Revenue (د.إ)</th>
+              <th style="width:58px" class="r">ROAS</th>
+              <th style="width:62px" class="r">Orders</th>
+              <th style="width:62px" class="r">Views</th>
+              <th style="width:62px" class="r">Clicks</th>
+              <th style="width:58px" class="r">CTR</th>
+              <th style="width:50px" class="r">ATC</th>
+            </tr></thead>
+            <tbody id="dhQueryBody"></tbody>
+          </table>
+        </div>
       </div>
 
     </div><!-- /detail-view -->
@@ -1588,7 +1701,10 @@ function openCampaignDetail(e, id) {
 
   dhRender(c);
   document.getElementById('dhProdSearch').value = '';
-  dhFilterProds();
+  // reset to Products tab
+  document.querySelectorAll('.d-tab').forEach(function(t,i){ t.classList.toggle('active', i===0); });
+  document.querySelectorAll('.d-tab-panel').forEach(function(p,i){ p.classList.toggle('active', i===0); });
+  dhRenderAllTabs();
   document.getElementById('overviewView').classList.add('hidden');
   document.getElementById('detailView').classList.add('active');
   document.querySelector('.page').scrollTop = 0;
@@ -1609,7 +1725,7 @@ function dhRender(c) {
   dhUpdateToggleBtn();
 
   var isDraft = c.status === 'draft';
-  var canEdit = c.status === 'active' || c.status === 'exhausted';
+  var canEdit = c.status !== 'draft' && c.status !== 'archived' && c.status !== 'completed';
 
   // type tag + code in name row
   var typeLabel = ({product:'Product',brand:'Brand',display:'Display'})[c.type] || c.type;
@@ -1620,65 +1736,76 @@ function dhRender(c) {
 
   var pencilSvg = '<svg viewBox="0 0 10 10"><path d="M6.5 1.5l2 2L2.5 9.5H.5v-2L6.5 1.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  function editBtn(type, title) {
+  // Edit link — blue with pencil icon, anchored top-right of each cell
+  function editLink(type, title, handler) {
     if (!canEdit) return '';
-    return '<button class="dh-sg-edit" onclick="openEditModal(event,\'' + type + '\',' + c.id + ')" title="' + title + '">' + pencilSvg + '</button>';
+    var onclick = handler
+      ? 'onclick="' + handler + '"'
+      : 'onclick="openEditModal(event,\'' + type + '\',' + c.id + ')"';
+    return '<button class="dh-sg-edit-link" ' + onclick + ' title="' + title + '">'
+      + '<svg viewBox="0 0 10 10"><path d="M6.5 1.5l2 2L2.5 9.5H.5v-2L6.5 1.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      + 'Edit</button>';
   }
 
-  // duration
+  // ── 1. DURATION ──
   var endVal = c.endDate ? c.endDate : '<span class="dh-date-no-end">No end date</span>';
-  var endEditBtn = canEdit
-    ? '<button class="dh-sg-edit" onclick="dhOpenEditEndDate(event)" title="Edit end date">' + pencilSvg + '</button>'
-    : '';
   var durationCell =
     '<div class="dh-sg">'
+    + editLink('enddate', 'Edit end date', 'dhOpenEditEndDate(event)')
     + '<div class="dh-sg-lbl">Duration</div>'
     + '<div class="dh-sg-val" style="flex-direction:column;align-items:flex-start;gap:3px;">'
     +   '<span style="font-size:12px;color:var(--text-2)">Start: <strong style="color:var(--text-1)">' + c.startDate + '</strong></span>'
-    +   '<span style="font-size:12px;color:var(--text-2);display:flex;align-items:center;gap:4px;">End: <strong style="color:var(--text-1)">' + endVal + '</strong>' + endEditBtn + '</span>'
+    +   '<span style="font-size:12px;color:var(--text-2)">End: <strong style="color:var(--text-1)">' + endVal + '</strong></span>'
     + '</div>'
     + '</div>';
 
-  // targeting & bid
-  var targetCell =
+  // ── 2. PRODUCTS ──
+  var prodCell =
     '<div class="dh-sg">'
-    + '<div class="dh-sg-lbl">Targeting & Bid</div>'
-    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + c.targeting + editBtn('targeting', 'Edit targeting & bidding') + '</div>'
-    + '<div class="dh-sg-sub">' + c.bidding + '</div>'
+    + editLink('products', 'Edit products', 'dhOpenEditProducts(event)')
+    + '<div class="dh-sg-lbl">Products</div>'
+    + '<div class="dh-sg-val">' + (isDraft ? '\u2014' : '<strong>' + dhProducts.length + '</strong>\u00a0SKUs') + '</div>'
+    + '<div class="dh-sg-sub">' + (isDraft ? 'Not started' : 'Click Edit to manage') + '</div>'
     + '</div>';
 
-  // budget — no spends, just the budget value + edit
+  // ── 3. BUDGET ──
   var budgetCell =
     '<div class="dh-sg">'
+    + editLink('budget', 'Edit budget')
     + '<div class="dh-sg-lbl">Daily Budget</div>'
-    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + (isDraft ? '\u2014' : '\u062f.\u0625 ' + c.budget.toLocaleString()) + editBtn('budget', 'Edit budget') + '</div>'
+    + '<div class="dh-sg-val">' + (isDraft ? '\u2014' : '\u062f.\u0625\u00a0' + c.budget.toLocaleString()) + '</div>'
     + '<div class="dh-sg-sub">' + (isDraft ? 'Not started' : 'per day') + '</div>'
     + '</div>';
 
-  // top of search bid %
+  // ── 4. TARGETING & BID ──
+  var targetCell =
+    '<div class="dh-sg">'
+    + editLink('targeting', 'Edit targeting & bidding')
+    + '<div class="dh-sg-lbl">Targeting & Bid</div>'
+    + '<div class="dh-sg-val">' + c.targeting + '</div>'
+    + '<div class="dh-sg-sub">' + c.bidding + '</div>'
+    + '</div>';
+
+  // ── 5. TOP OF SEARCH BID ──
   var tosCell =
     '<div class="dh-sg">'
+    + editLink('tos', 'Edit top of search bid')
     + '<div class="dh-sg-lbl">Top of Search Bid</div>'
-    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">' + (isDraft ? '\u2014' : '20%') + editBtn('tos', 'Edit top of search bid') + '</div>'
+    + '<div class="dh-sg-val">' + (isDraft ? '\u2014' : '20%') + '</div>'
     + '<div class="dh-sg-sub">bid multiplier</div>'
     + '</div>';
 
-  // negative targeting
+  // ── 6. NEGATIVE KEYWORDS ──
   var negExact = 8, negPhrase = 5;
   var negCell =
     '<div class="dh-sg">'
-    + '<div class="dh-sg-lbl">Negative Targeting</div>'
-    + '<div class="dh-sg-val" style="align-items:center;gap:5px;">'
-    +   '<span style="font-size:12px;color:var(--text-2);">'
-    +     '<strong style="color:var(--text-1);">' + negExact + '</strong> exact &nbsp;'
-    +     '<strong style="color:var(--text-1);">' + negPhrase + '</strong> phrase'
-    +   '</span>'
-    +   editBtn('negative', 'Edit negative targeting')
-    + '</div>'
-    + '<div class="dh-sg-sub">Exclude irrelevant keywords</div>'
+    + editLink('negative', 'Edit negative keywords')
+    + '<div class="dh-sg-lbl">Negative Keywords</div>'
+    + '<div class="dh-sg-val"><strong>' + negExact + '</strong>\u00a0exact\u00a0\u00a0<strong>' + negPhrase + '</strong>\u00a0phrase</div>'
+    + '<div class="dh-sg-sub">Exclude irrelevant searches</div>'
     + '</div>';
 
-  document.getElementById('dhSettings').innerHTML = durationCell + targetCell + budgetCell + tosCell + negCell;
+  document.getElementById('dhSettings').innerHTML = durationCell + prodCell + budgetCell + targetCell + tosCell + negCell;
 
   // metrics row
   function mc(lbl, val, tip, last) {
@@ -1784,6 +1911,36 @@ function dhOpenEditBudget() {
     + '<input type="number" value="' + detailCampaign.budget + '" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:14px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
     + '<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Current: \u062f.\u0625 ' + detailCampaign.budget.toLocaleString() + ' / day</div>';
   modal.style.display = 'flex';
+}
+
+function dhOpenEditProducts(e) {
+  if (e) e.stopPropagation();
+  if (!detailCampaign) return;
+  var modal = document.getElementById('editModal');
+  document.getElementById('editModalTitle').textContent = 'Edit products';
+  var rows = dhProducts.map(function(p, i) {
+    return '<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--card-border);">'
+      + '<div><div style="font-size:12px;font-weight:500;color:var(--text-1)">' + p.name + '</div>'
+      + '<div style="font-size:10px;color:var(--text-3);font-family:monospace">' + p.sku + '</div></div>'
+      + '<span class="sbadge ' + p.status + '" style="cursor:pointer" onclick="dhToggleProdStatus(' + i + ',this)">'
+      + '<span class="sd"></span>' + (p.status === 'active' ? 'Active' : 'Paused') + '</span>'
+      + '</div>';
+  }).join('');
+  document.getElementById('editModalBody').innerHTML =
+    '<div style="margin-bottom:10px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">' + detailCampaign.name + '</strong></div>'
+    + '<div style="margin-bottom:8px;font-size:12px;font-weight:600;color:var(--text-2)">6 SKUs in this campaign</div>'
+    + rows
+    + '<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--card-border);">'
+    + '<button onclick="dhCloseMoreDd()" style="height:28px;padding:0 12px;border-radius:var(--r-sm);border:1px solid var(--card-border);background:var(--page-bg);font-size:12px;font-family:\'DM Sans\',sans-serif;cursor:pointer;color:var(--blue-dk);">+ Add SKU</button>'
+    + '</div>';
+  modal.style.display = 'flex';
+}
+
+function dhToggleProdStatus(idx, el) {
+  dhProducts[idx].status = dhProducts[idx].status === 'active' ? 'paused' : 'active';
+  el.className = 'sbadge ' + dhProducts[idx].status;
+  el.innerHTML = '<span class="sd"></span>' + (dhProducts[idx].status === 'active' ? 'Active' : 'Paused');
+  dhRenderAllTabs();
 }
 
 function dhOpenEditEndDate(e) {
@@ -1937,7 +2094,9 @@ function closeDetail() {
 
 function openEditModal(e, type, id) {
   e.stopPropagation();
+  if (type === 'products') { dhOpenEditProducts(e); return; }
   var c = campaigns.find(function(x){ return x.id===id; });
+  if (!c && detailCampaign) c = detailCampaign;
   var modal = document.getElementById('editModal');
   var title = document.getElementById('editModalTitle');
   var body  = document.getElementById('editModalBody');
@@ -1962,6 +2121,7 @@ function openEditModal(e, type, id) {
       +'<input type="number" value="20" min="0" max="900" style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 12px;font-size:14px;font-family:\'DM Sans\',sans-serif;outline:none;box-sizing:border-box;" />'
       +'<div style="margin-top:8px;font-size:12px;color:var(--text-3)">Increase bids for ads appearing at top of search results. 0% = no adjustment.</div>';
   } else {
+    title.textContent = 'Edit targeting & bidding';
     body.innerHTML = '<div style="margin-bottom:14px;font-size:12px;color:var(--text-3)">Campaign: <strong style="color:var(--text-1)">'+c.name+'</strong></div>'
       +'<label style="display:block;margin-bottom:6px;font-size:12px;font-weight:600;color:var(--text-2)">Targeting type</label>'
       +'<select style="width:100%;height:36px;border:1px solid var(--card-border);border-radius:var(--r-sm);padding:0 10px;font-size:13px;font-family:\'DM Sans\',sans-serif;margin-bottom:14px;outline:none;box-sizing:border-box;">'
@@ -1982,48 +2142,145 @@ function closeEditModal() {
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeEditModal(); });
 
-// ── DETAIL SECTION 3: ADVERTISED PRODUCTS ────────────────────────────────
+// ── DETAIL SECTION 3: TABBED DATA ─────────────────────────────────────────
 
+function dhSwitchTab(name, btn) {
+  document.querySelectorAll('.d-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.d-tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('dtp-' + name).classList.add('active');
+}
+
+var editPencil = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width:11px;height:11px;color:var(--text-4);cursor:pointer;flex-shrink:0"><path d="M8 2l2 2L3.5 10.5H1.5v-2L8 2z"/></svg>';
+function fmt(v) { return v ? '\u062f.\u0625\u00a0' + (typeof v === 'number' ? v.toLocaleString() : v) : '\u2014'; }
+function fmtN(v) { return v > 0 ? v.toLocaleString() : '\u2014'; }
+function fmtPct(v) { return v ? v : '\u2014'; }
+
+// ── PRODUCTS ──
 var dhProducts = [
-  { id:1, name:'Ramadan Special Gift Set - Premium Collection', sku:'SA-GIFT-2026-001', emoji:'🎁', status:'active',  bid:1.40, spends:128, revenue:1020, roas:7.97, orders:75,  ctr:2.4 },
-  { id:2, name:'Luxury Prayer Rug - Gold Edition',              sku:'SA-PRAY-2024-002', emoji:'🕌', status:'active',  bid:1.25, spends:96,  revenue:765,  roas:7.97, orders:56,  ctr:2.1 },
-  { id:3, name:'Traditional Dates Gift Box - 500g',             sku:'SA-DATE-2026-003', emoji:'🫙', status:'active',  bid:1.10, spends:84,  revenue:670,  roas:7.98, orders:49,  ctr:2.3 },
-  { id:4, name:'Oud Perfume Collection - 3 Piece Set',          sku:'SA-PERF-2026-004', emoji:'🧴', status:'paused',  bid:1.55, spends:210, revenue:1680, roas:8.00, orders:123, ctr:2.8 },
-  { id:5, name:'Islamic Art Wall Decor - Large Canvas',         sku:'SA-DECO-2026-005', emoji:'🖼️', status:'active',  bid:0.95, spends:72,  revenue:572,  roas:7.94, orders:42,  ctr:1.9 },
-  { id:6, name:'Kids Ramadan Advent Calendar',                  sku:'SA-KIDS-2026-006', emoji:'🌙', status:'active',  bid:1.20, spends:50,  revenue:393,  roas:7.86, orders:29,  ctr:2.2 }
+  { name:'Ramadan Special Gift Set', sku:'N70063172V', status:'active',  spends:210,  revenue:1673, roas:7.97, orders:75, ecpc:1.28, ctr:'2.4%', views:19556, clicks:185, atc:31 },
+  { name:'Luxury Prayer Mat Gold',   sku:'N70063176V', status:'active',  spends:0,    revenue:0,    roas:0,    orders:0,  ecpc:0,    ctr:'0%',   views:0,     clicks:0,   atc:0  },
+  { name:'Dates Gift Box 500g',      sku:'N70249880V', status:'paused',  spends:2035, revenue:259,  roas:0.13, orders:1,  ecpc:11,   ctr:'0.95%',views:19556, clicks:185, atc:31 },
+  { name:'Oud Perfume 3-Piece Set',  sku:'N70249881V', status:'active',  spends:0,    revenue:0,    roas:0,    orders:0,  ecpc:0,    ctr:'0%',   views:0,     clicks:0,   atc:0  },
+  { name:'Islamic Art Wall Canvas',  sku:'N70249882V', status:'active',  spends:0,    revenue:0,    roas:0,    orders:0,  ecpc:0,    ctr:'0%',   views:0,     clicks:0,   atc:0  },
+  { name:'Kids Advent Calendar',     sku:'N70249883V', status:'active',  spends:250,  revenue:420,  roas:1.68, orders:3,  ecpc:11,   ctr:'0.44%',views:3152,  clicks:14,  atc:1  }
 ];
 
 function dhRenderProdRow(p) {
-  var badge = p.status === 'active'
-    ? '<span class="sbadge active"><span class="sd"></span>Active</span>'
-    : '<span class="sbadge paused"><span class="sd"></span>Paused</span>';
+  var badge = '<span class="sbadge ' + p.status + '"><span class="sd"></span>' + (p.status === 'active' ? 'Active' : 'Paused') + '</span>';
   return '<tr>'
-    + '<td><div style="display:flex;align-items:center;gap:10px;min-width:0;">'
-    +   '<div class="prod-img">' + p.emoji + '</div>'
-    +   '<div style="min-width:0;">'
-    +     '<div class="prod-name" title="' + p.name + '">' + p.name + '</div>'
-    +     '<div class="prod-sku">' + p.sku + '</div>'
-    +   '</div>'
-    + '</div></td>'
-    + '<td>' + badge + '</td>'
-    + '<td class="r">' + p.bid.toFixed(2) + '</td>'
-    + '<td class="r">' + p.spends.toLocaleString() + '</td>'
-    + '<td class="r">' + p.revenue.toLocaleString() + '</td>'
-    + '<td class="r">' + p.roas.toFixed(2) + '</td>'
-    + '<td class="r">' + p.orders + '</td>'
-    + '<td class="r">' + p.ctr.toFixed(1) + '%</td>'
+    + '<td><div style="display:flex;align-items:center;gap:9px;min-width:0;">'
+    +   '<div class="prod-img">&#128247;</div>'
+    +   '<div style="min-width:0;flex:1;"><div class="prod-name" title="' + p.name + '">' + p.name + '</div>'
+    +   '<div class="prod-sku">' + p.sku + '</div></div></div></td>'
+    + '<td style="text-align:center">' + badge + '</td>'
+    + '<td class="r">' + (p.spends ? '\u062f.\u0625\u00a0' + p.spends.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (p.revenue ? '\u062f.\u0625\u00a0' + p.revenue.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (p.roas ? p.roas.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + fmtN(p.orders) + '</td>'
+    + '<td class="r">' + (p.ecpc ? '\u062f.\u0625\u00a0' + p.ecpc.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + fmtPct(p.ctr) + '</td>'
+    + '<td class="r">' + fmtN(p.views) + '</td>'
+    + '<td class="r">' + fmtN(p.clicks) + '</td>'
+    + '<td class="r">' + fmtN(p.atc) + '</td>'
     + '</tr>';
 }
 
 function dhFilterProds() {
-  var q = document.getElementById('dhProdSearch').value.toLowerCase();
-  var data = dhProducts.filter(function(p) {
-    return !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q);
-  });
+  var q = (document.getElementById('dhProdSearch').value || '').toLowerCase();
+  var data = dhProducts.filter(function(p){ return !q || p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q); });
   document.getElementById('dhProdBody').innerHTML = data.map(dhRenderProdRow).join('');
-  document.getElementById('dhProdCount').textContent = data.length + ' product' + (data.length !== 1 ? 's' : '');
 }
 
+// ── PLACEMENTS ──
+var dhPlacements = [
+  { name:'Top of Search',  bidAdj:0,  spends:0,    revenue:0, roas:0,    orders:0,  views:0,     clicks:0,   ctr:'0%',    atc:0 },
+  { name:'Rest of Search', bidAdj:0,  spends:0,    revenue:0, roas:0,    orders:0,  views:0,     clicks:0,   ctr:'0%',    atc:0 },
+  { name:'Product',        bidAdj:0,  spends:1881, revenue:0, roas:0,    orders:30, views:16404, clicks:171, ctr:'1.04%', atc:0 },
+  { name:'Category',       bidAdj:0,  spends:0,    revenue:0, roas:0,    orders:0,  views:0,     clicks:0,   ctr:'0%',    atc:0 }
+];
+
+function dhRenderPlacRow(p) {
+  return '<tr>'
+    + '<td style="font-weight:500;font-size:12px">' + p.name + '</td>'
+    + '<td><div class="bid-cell"><span class="bid-val">' + p.bidAdj + '%</span>' + editPencil + '</div></td>'
+    + '<td class="r">' + (p.spends ? '\u062f.\u0625\u00a0' + p.spends.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (p.revenue ? '\u062f.\u0625\u00a0' + p.revenue.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (p.roas ? p.roas.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + fmtN(p.orders) + '</td>'
+    + '<td class="r">' + fmtN(p.views) + '</td>'
+    + '<td class="r">' + fmtN(p.clicks) + '</td>'
+    + '<td class="r">' + fmtPct(p.ctr) + '</td>'
+    + '<td class="r">' + fmtN(p.atc) + '</td>'
+    + '</tr>';
+}
+
+// ── TARGETS ──
+var dhTargets = [
+  { name:'auto category/', type:'Category Auto Match', status:'active', bid:11,  ecpc:11.00, recBid:null, recRange:null,       spends:2035, revenue:259, roas:0.13, orders:1, views:19556, clicks:185, ctr:'0.95%', atc:31, soi:'\u2014' },
+  { name:'auto keyword/',  type:'Keyword Auto Match',  status:'active', bid:11,  ecpc:0,     recBid:null, recRange:null,       spends:0,    revenue:0,   roas:0,    orders:0, views:0,     clicks:0,   ctr:'0%',    atc:0,  soi:'\u2014' },
+  { name:'N11200508A/',    type:'Category Sku Match',  status:'active', bid:0.7, ecpc:0.70,  recBid:0.28, recRange:'0.25\u20130.30', spends:9.80, revenue:77,  roas:7.86, orders:1, views:1976, clicks:14,  ctr:'0.71%', atc:5,  soi:'\u2014' },
+  { name:'N11200553A/',    type:'Category Sku Match',  status:'active', bid:0.7, ecpc:0.70,  recBid:0.28, recRange:'0.25\u20130.30', spends:2.80, revenue:0,   roas:0,    orders:0, views:1358, clicks:4,   ctr:'0.29%', atc:3,  soi:'\u2014' },
+  { name:'N11200560A/',    type:'Category Sku Match',  status:'paused', bid:0.7, ecpc:0.70,  recBid:0.28, recRange:'0.25\u20130.30', spends:4.20, revenue:0,   roas:0,    orders:0, views:1549, clicks:6,   ctr:'0.39%', atc:1,  soi:'\u2014' }
+];
+
+function dhRenderTargRow(t) {
+  var badge = '<span class="sbadge ' + t.status + '"><span class="sd"></span>' + (t.status === 'active' ? 'Active' : 'Paused') + '</span>';
+  var recCell = t.recBid
+    ? '<div style="display:flex;align-items:center;gap:6px;">\u062f.\u0625\u00a0' + t.recBid.toFixed(2) + ' <button class="apply-btn">Apply</button></div>'
+    + '<div class="rec-range">\u062f.\u0625\u00a0' + t.recRange + '</div>'
+    : '<span style="color:var(--text-4)">\u2014</span>';
+  return '<tr>'
+    + '<td><div style="font-weight:500;font-size:12px">' + t.name + '</div><div style="font-size:10px;color:var(--text-3)">' + t.type + '</div></td>'
+    + '<td style="text-align:center">' + badge + '</td>'
+    + '<td><div class="bid-cell"><span class="bid-val">\u062f.\u0625\u00a0' + t.bid.toFixed(2) + '</span>' + editPencil + '</div></td>'
+    + '<td class="r">' + (t.ecpc ? '\u062f.\u0625\u00a0' + t.ecpc.toFixed(2) : '\u2014') + '</td>'
+    + '<td>' + recCell + '</td>'
+    + '<td class="r">' + (t.spends ? '\u062f.\u0625\u00a0' + t.spends.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (t.revenue ? '\u062f.\u0625\u00a0' + t.revenue.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (t.roas ? t.roas.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + fmtN(t.orders) + '</td>'
+    + '<td class="r">' + fmtN(t.views) + '</td>'
+    + '<td class="r">' + fmtN(t.clicks) + '</td>'
+    + '<td class="r">' + fmtPct(t.ctr) + '</td>'
+    + '<td class="r">' + fmtN(t.atc) + '</td>'
+    + '<td class="r">' + t.soi + '</td>'
+    + '</tr>';
+}
+
+// ── CUSTOMER QUERIES ──
+var dhQueries = [
+  { term:'',             target:'Auto Category', match:'Auto Match', bid:11, ecpc:11, spends:462, revenue:0,   roas:0,    orders:0, views:3477, clicks:42, ctr:'1.21%', atc:0  },
+  { term:'N70174749V-1', target:'Auto Category', match:'Auto Match', bid:11, ecpc:11, spends:253, revenue:0,   roas:0,    orders:0, views:1561, clicks:23, ctr:'1.47%', atc:21 },
+  { term:'CART',         target:'Auto Category', match:'Auto Match', bid:11, ecpc:11, spends:154, revenue:259, roas:1.68, orders:1, views:3152, clicks:14, ctr:'0.44%', atc:1  },
+  { term:'N70174807V-1', target:'Auto Category', match:'Auto Match', bid:11, ecpc:11, spends:99,  revenue:0,   roas:0,    orders:0, views:783,  clicks:9,  ctr:'1.15%', atc:0  },
+  { term:'N70174752V-1', target:'Auto Category', match:'Auto Match', bid:11, ecpc:11, spends:77,  revenue:0,   roas:0,    orders:0, views:309,  clicks:7,  ctr:'2.27%', atc:0  }
+];
+
+function dhRenderQueryRow(q) {
+  return '<tr>'
+    + '<td style="font-size:12px;font-weight:500">' + (q.term || '<span style="color:var(--text-4)">\u2014</span>') + '</td>'
+    + '<td style="font-size:12px;color:var(--text-2)">' + q.target + '</td>'
+    + '<td style="font-size:12px;color:var(--text-2)">' + q.match + '</td>'
+    + '<td class="r">\u062f.\u0625\u00a0' + q.bid.toFixed(2) + '</td>'
+    + '<td class="r">' + (q.ecpc ? '\u062f.\u0625\u00a0' + q.ecpc.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + (q.spends ? '\u062f.\u0625\u00a0' + q.spends.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (q.revenue ? '\u062f.\u0625\u00a0' + q.revenue.toLocaleString() : '\u2014') + '</td>'
+    + '<td class="r">' + (q.roas ? q.roas.toFixed(2) : '\u2014') + '</td>'
+    + '<td class="r">' + fmtN(q.orders) + '</td>'
+    + '<td class="r">' + fmtN(q.views) + '</td>'
+    + '<td class="r">' + fmtN(q.clicks) + '</td>'
+    + '<td class="r">' + fmtPct(q.ctr) + '</td>'
+    + '<td class="r">' + fmtN(q.atc) + '</td>'
+    + '</tr>';
+}
+
+function dhRenderAllTabs() {
+  document.getElementById('dhProdBody').innerHTML = dhProducts.map(dhRenderProdRow).join('');
+  document.getElementById('dhPlacBody').innerHTML = dhPlacements.map(dhRenderPlacRow).join('');
+  document.getElementById('dhTargBody').innerHTML = dhTargets.map(dhRenderTargRow).join('');
+  document.getElementById('dhQueryBody').innerHTML = dhQueries.map(dhRenderQueryRow).join('');
+}
 
 
 </script>
