@@ -4179,7 +4179,10 @@ function dhRenderProdRow(p, idx) {
     + '<td class="vtop"><div style="display:flex;align-items:flex-start;gap:9px;min-width:0;">'
     +   '<div class="prod-img" style="background:' + (p.imgColor||'var(--page-bg)') + ';align-self:flex-start;flex-shrink:0;">&#128247;</div>'
     +   '<div style="min-width:0;flex:1;padding-top:1px;">'
-    +     '<div class="prod-name" style="text-align:left;" title="' + p.name + '">' + p.name + '</div>'
+    +     '<div style="display:flex;align-items:center;gap:5px;min-width:0;">'
+    +       '<div class="prod-name" style="text-align:left;" title="' + p.name + '">' + p.name + '</div>'
+    +       '<a href="https://www.noon.com/uae-en/search/?q=' + encodeURIComponent(p.sku) + '" target="_blank" title="View on Noon" style="display:inline-flex;align-items:center;flex-shrink:0;color:var(--text-4);transition:color .12s;" onmouseover="this.style.color=\'var(--blue)\'" onmouseout="this.style.color=\'var(--text-4)\'"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px;"><path d="M5 2H2v8h8V7M7 2h3v3M10 2L5.5 6.5"/></svg></a>'
+    +     '</div>'
     +     '<div style="display:flex;align-items:center;gap:5px;margin-top:3px;">'
     +       '<div class="prod-sku">' + p.sku + '</div>'
     +       badge
